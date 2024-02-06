@@ -3,4 +3,4 @@
     --text-color:#202020;
     --second-color: #026bfd;
     --main-color: #026bfd;
-    --footer-color: #
+    --footer-color: #013680;
