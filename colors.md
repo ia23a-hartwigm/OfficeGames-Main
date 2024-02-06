@@ -1,5 +1,6 @@
---bg-color: #202020;
+--bg-color: #fff;
     --second-bg-color: #2a2a2a;
-    --text-color:#fff;
+    --text-color:#202020;
     --second-color: #026bfd;
     --main-color: #026bfd;
+    --big-font: 5rem;
