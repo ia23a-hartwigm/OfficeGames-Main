@@ -1,5 +1,5 @@
 # Wir importieren zuerst das Flask-Objekt aus dem Package
-from flask import Flask, request, render_template, url_for, redirect
+from flask import Flask, request, render_template, url_for, redirect, session
 import services.math_service as math_service
 
 # mock data
@@ -27,17 +27,83 @@ z.B.
 
 @app.route("/")
 def home() -> str:
-    print(math_service.add(1.0, 2.0))
     app.logger.info("Rendering home page")
     return render_template("home.html")
 
 
-@app.route("/about_flask")
-def about_flask() -> str:
+@app.route("/shop")
+def shop() -> str:
     app.logger.info("Rendering About Flask page")
-    return render_template("about_flask.html")
+    return render_template("shop.html")
 
 
+@app.route("/about-us")
+def about_us() -> str:
+    app.logger.info("Rendering About Flask page")
+    return render_template("about-us.html")
+
+
+@app.route("/faq")
+def faq() -> str:
+    app.logger.info("Rendering About Flask page")
+    return render_template("faq.html")
+
+
+@app.route("/warenkorb")
+def warenkorb() -> str:
+    app.logger.info("Rendering About Flask page")
+    return render_template("warenkorb.html")
+
+
+@app.route("/login")
+def login() -> str:
+    app.logger.info("Rendering About Flask page")
+    return render_template("login.html")
+
+
+@app.route("/register")
+def new_user() -> str:
+    app.logger.info("Rendering About Flask page")
+    return render_template("new_user.html")
+
+
+@app.route("/kasse")
+def kasse() -> str:
+    app.logger.info("Rendering About Flask page")
+    return render_template("kasse.html")
+
+
+@app.route("/impressum")
+def impressum() -> str:
+    app.logger.info("Rendering About Flask page")
+    return render_template("impressum.html")
+
+
+@app.route("/agb")
+def agb() -> str:
+    app.logger.info("Rendering About Flask page")
+    return render_template("agb.html")
+
+
+@app.route("/datenschutz")
+def datenschutz() -> str:
+    app.logger.info("Rendering About Flask page")
+    return render_template("datenschutz.html")
+
+
+@app.route("/login_do", methods=["POST", "GET"])
+def login_do():
+    # if form is submited
+    if request.method == "POST":
+        # record the user name
+        session["name"] = request.form.get("name")
+        session["pw"] = request.form.get("pw")
+        # redirect to the main page
+        return redirect("/")
+    return render_template("login.html")
+
+
+'''
 # Route to handle form submission
 @app.route("/submit", methods=["POST"])
 def submit():
@@ -68,6 +134,7 @@ def hello_world() -> str:
     # Die Anzeigefunktion 'hello_world' gibt den String "Hello, World" als Antwort zurück
     return 'Hello, World!'
 
+'''
 
 if __name__ == '__main__':
     app.run()
