@@ -31,56 +31,46 @@
             color: var(--main-color);
         }
 
-        main {
-            background-image: url(https://placehold.co/1920x600);
-            background-color: red;
-            height: 600px;
-            width: 100%;
-            background-repeat: no-repeat;
-            background-position: center;
+        .home__container{
+            position: relative;
+            display:grid;
+            row-gap: 2rem;
+            padding-block: 8rem 4rem;;
         }
 
-        section {
-            width: 100%;
+        .home__subtitle,
+        .home__title,
+        .home__button{
+            color: var(--text-color);
         }
 
-        .title {
-            padding-top: 450px !important;
+        .home__subtitle{
+            font-size: var(--h2-font);
+            margin-bottom: .5rem;
         }
 
-        #shop-link {
-            height: auto;
+        .home__title{
+            font-size: var(--big-font);
+            margin-bottom: 1rem;
         }
 
-        .shop-btn {
-            margin-top: 22% !important;
-            background-color: var(--main-color) !important;
-            transition: all .45s ease;
+        .home__description{
+            font-size: var(--p-font);
+            margin-bottom: 2rem;
         }
 
-        .shop-btn:hover{
+        .home__button{
+            display: inline-block;
+            background-color: var(--main-color);
+            box-shadow: 0 0px 32px hsla(0, 0%, 0%, .1);
+        }
+        .home__button:hover{
             color: var(--text-color);
             transform: scale(0.99);
             cursor: pointer;
-
         }
 
-        .faq-link {
-            background-color: #dadada;
-        }
-        .btn2 {
-            margin-left: 47%;
-            background-color: var(--main-color) !important;
-            color: #fff;
-            transition: all .45s ease;
-        }
 
-        .btn2:hover{
-            color: var(--text-color) !important;
-            transform: scale(0.99);
-            cursor: pointer;
-
-        }
 
 
 
@@ -193,25 +183,55 @@
     <hr>
 </header>
 <main>
-    <h1 class="display-1 text-center title"><strong>Basketball Korb</strong></h1>
+    <section class="home">
+        <div class="home__container container">
+            <div class="home__data">
+                <h2 class="hoem__subtitle">Office Games</h2>
+
+                <h1 class="home__title">
+                    hdhb <br>
+                    djbfd <br>
+                    df
+                </h1>
+
+                <p class="home__description">
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. A voluptate quos, aliquid accusamus
+                    eius ullam tenetur itaque natus quo doloribus iusto, eaque est iure, autem quas. Dignissimos,
+                    repudiandae, ipsa quia corrupti vel numquam similique est maxime amet eaque reprehenderit ab
+                    perspiciatis! Ipsum, eveniet. Sequi obcaecati voluptatem tenetur fuga magnam distinctio.
+                </p>
+
+                <a href="#" class="home__button">Buy now</a>
+
+            </div>
+            <div class="home__images">
+                <div class="home__circle"></div>
+
+                <div class="home__swiper">
+                    <div>
+                        <article class="home__article">
+                            <img src="" alt="">
+                        </article>
+
+                        <article class="home__article">
+                            <img src="" alt="">
+                        </article>
+
+                        <article class="home__article">
+                            <img src="" alt="">
+                        </article>
+                    </div>
+                </div>
+
+            </div>
+
+
+        </div>
+    </section>
 </main>
 
-<section id="shop-link">
-    <div class="card mb-5 mt-5 mx-auto" style="max-width: 50%;">
-        <div class="row g-0">
-            <div class="col-md-4">
-                <img src=https://placehold.co/350x350 class="img-fluid rounded-start" alt="...">
-            </div>
-            <div class="col-md-8">
-                <div class="card-body">
-                    <h5 class="card-title display-5"><strong>Hier Bestellen</strong></h5>
-                    <p class="card-text">Und noch viel mehr.</p>
-                    <button class="btn btn-primary shop-btn">Zum Shop</button>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
+
+
 
 <section class="faq-link">
     <div class="pt-4 pb-4">
