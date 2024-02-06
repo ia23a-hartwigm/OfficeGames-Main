@@ -6,8 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home - Office Games</title>
     <link href=https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css rel="stylesheet"
-        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+          integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <style>
+
         main {
             background-image: url(https://placehold.co/1920x600);
             background-color: red;
@@ -16,9 +18,11 @@
             background-repeat: no-repeat;
             background-position: center;
         }
-        section{
+
+        section {
             width: 100%;
         }
+
         .title {
             padding-top: 450px !important;
         }
@@ -34,56 +38,177 @@
         .faq-link {
             background-color: #dadada;
         }
+
+
+
+        *{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+    text-decoration: none;
+    list-style: none;
+    scroll-behavior: smooth;
+}
+
+:root{
+    --bg-color: #fff;
+    --second-bg-color: #c9c4c4;
+    --text-color:#202020;
+    --second-color: #026bfd;
+    --main-color: #026bfd;
+    --big-font: 5rem;
+    --h2-font: 3rem;
+    --p-font: 1.1rem;
+
+}
+
+body{
+    background: var(--bg-color);
+    color: var(--text-color);
+}
+
+span{
+    color: var(--main-color);
+}
+.contact-home {
+    background: var(--bg-color);
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    align-items: center;
+    gap: 2.5rem;
+    padding: 15px;
+
+ }
+ .contact-home-text h4{
+     color: var(--text-color);
+     margin: 18px 0;
+     font-size: 20px;
+     font-weight: 600;
+ }
+
+ .contact-home-text h2{
+     font-size: var(--h2-font);
+     line-height: 1;
+ }
+
+ .contact-home-text p{
+     color: var(--text-color);
+     font-size: var(--p-font);
+     line-height: 1.8;
+
+ }
+
+ .list{
+     margin-top: 30px;
+     margin-bottom: 2.8rem;
+     text-decoration: none;
+ }
+ .list li{
+     margin-bottom: 12px;
+ }
+
+ .list li a{
+     display: block;
+     color: var(--text-color);
+     font-size: 14px;
+     transition: all .45s ease;
+
+ }
+ .list li a:hover{
+ color: var(--main-color);
+ transform: translateX(5px);
+ }
+
+
+
+ .contact-form form{
+     position: relative;
+
+ }
+
+ .contact-form form input, form textarea{
+     width: 100%;
+     padding: 14px;
+     background: var(--second-bg-color);
+     color: var(--text-color);
+     border: none;
+     outline: none;
+     font-size: 15px;
+     border-radius: 8px;
+     margin-bottom: 10px;
+
+
+ }
+
+ .contact-form textarea{
+    resize: none;
+    height: 240px;
+ }
+
+ .contact-form .submit{
+     display: inline-block;
+     font-size: 16px;
+     background: var(--main-color);
+     color: var(--bg-color);
+     width: 100%;
+     transition: all .45s ease;
+ }
+ .contact-form .submit:hover{
+     color: var(--text-color);
+     transform: scale(0.99);
+     cursor: pointer;
+ }
     </style>
 </head>
 
 <body>
-    <header>
-        <hr>
-        Header von Nader
-        <hr>
-    </header>
-    <main>
-        <h1 class="display-1 text-center title"><strong>Basketball Korb</strong></h1>
-    </main>
+<header>
+    <hr>
+    Header von Nader
+    <hr>
+</header>
+<main>
+    <h1 class="display-1 text-center title"><strong>Basketball Korb</strong></h1>
+</main>
 
-    <section id="shop-link">
-        <div class="card mb-5 mt-5 mx-auto" style="max-width: 50%;">
-            <div class="row g-0">
-                <div class="col-md-4">
-                    <img src=https://placehold.co/350x350 class="img-fluid rounded-start" alt="...">
-                </div>
-                <div class="col-md-8">
-                    <div class="card-body">
-                        <h5 class="card-title display-5"><strong>Hier Bestellen</strong></h5>
-                        <p class="card-text">Und noch viel mehr.</p>
-                        <button class="btn btn-primary shop-btn">Zum Shop</button>
-                    </div>
+<section id="shop-link">
+    <div class="card mb-5 mt-5 mx-auto" style="max-width: 50%;">
+        <div class="row g-0">
+            <div class="col-md-4">
+                <img src=https://placehold.co/350x350 class="img-fluid rounded-start" alt="...">
+            </div>
+            <div class="col-md-8">
+                <div class="card-body">
+                    <h5 class="card-title display-5"><strong>Hier Bestellen</strong></h5>
+                    <p class="card-text">Und noch viel mehr.</p>
+                    <button class="btn btn-primary shop-btn">Zum Shop</button>
                 </div>
             </div>
         </div>
-    </section>
+    </div>
+</section>
 
-    <section class="faq-link">
-        <div class="pt-4 pb-4">
-            <h1 class="display-3 text-center"><strong>Hast du noch Fragen?</strong></h1>
-            <br>
-            <br>
-            <div class="mx-auto">
-                <button class="btn btn-primary mx-5">FAQ</button>
-            </div>
+<section class="faq-link">
+    <div class="pt-4 pb-4">
+        <h1 class="display-3 text-center"><strong>Hast du noch Fragen?</strong></h1>
+        <br>
+        <br>
+        <div class="mx-auto">
+            <button class="btn btn-primary mx-5">FAQ</button>
         </div>
-    </section>
+    </div>
+</section>
 
-    {% extends 'contact.html' %}
+{% extends 'contact.html' %}
 
 
-    <footer>
-        <hr>
-        Footer von Jenny
-        <hr>
-    </footer>
-    <script src=https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js
+<footer>
+    <hr>
+    Footer von Jenny
+    <hr>
+</footer>
+<script src=https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js
         integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
         crossorigin="anonymous"></script>
 </body>
