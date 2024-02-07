@@ -1,0 +1,39 @@
+body { 
+    font-family: Arial, sans-serif; 
+}
+header {
+    display: flex; justify-content: space-between; align-items: center; padding: 20px;
+}
+.nav-links {
+    list-style-type: none; 
+}
+.nav-links li { 
+    display: inline; margin-right: 20px; 
+}
+.main {
+     text-align: center;
+}
+.product {
+     margin-bottom: 30px; 
+}
+.product img {
+    width: 250px; height: auto; 
+}
+.product-description { 
+    margin-top: 10px; 
+}
+.shop-button { 
+    margin-top: 20px; padding: 10px 20px; 
+}
+.contact-form { 
+    margin-top: 30px; 
+}
+.contact-form input, .contact-form textarea {
+     width: 80%; margin-bottom: 10px; padding: 10px; 
+}
+footer { 
+    text-align: center; padding: 20px; 
+}
+main{
+    background-color: rgb(103, 103, 216);
+}
