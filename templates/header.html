@@ -2,9 +2,209 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Header</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+
+    <style>
+        .header-logo {
+            flex: 1;
+            width: auto;
+        }
+
+        .header-logo .image {
+            height: 100px;
+        }
+
+        .search-container {
+            width: auto;
+            background: #fff;
+            height: 30px;
+            border-radius: 30px;
+            padding: 10px 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            transition: 0.8s;
+
+            box-shadow: 4px 4px 6px 0 rgba(255, 255, 255, .3),
+            -4px -4px 6px 0 rgba(116, 125, 136, .2),
+            inset -4px -4px 6px 0 rgba(255, 255, 255, .2),
+            inset 4px 4px 6px 0 rgba(0, 0, 0, .2);
+        }
+
+        .search-container:hover > .search-input {
+            width: 300px;
+        }
+
+        .search-container .search-input {
+            background: transparent;
+            border: none;
+            outline: none;
+            width: 0;
+            font-weight: 500;
+            font-size: 16px;
+            transition: 0.8s;
+
+        }
+
+        .search-container .search-btn .fas {
+            color: black;
+        }
+
+
+        .search-container:hover {
+            animation: hoverShake 0.15s linear 3;
+        }
+
+        .shopping-cart {
+            font-size: 24px;
+            color: black;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        :root {
+            --header-outer-height: 110px;
+            --header-inner-height: 70px;
+            --header-height-difference: calc(
+                    var(--header-outer-height) - var(--header-inner-height)
+            );
+            --header-bg: #fff;
+        }
+
+        body {
+            font-family: "DM Sans", sans-serif;
+            background-color: white;
+            line-height: 1.5;
+            min-height: 300vh;
+            position: relative;
+        }
+
+        .responsive-wrapper {
+            width: 90%;
+            max-width: 1280px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .header-outer {
+            height: var(--header-outer-height);
+            position: sticky;
+            top: calc(
+                    var(--header-height-difference) * -1
+            );
+            display: flex;
+            align-items: center;
+            background-color: var(--header-bg);
+            box-shadow: 0 2px 10px 0 rgba(0, 0, 0, 0.1);
+        }
+
+        .header-inner {
+            height: var(--header-inner-height);
+            position: sticky;
+            top: 0;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .header-logo img {
+            height: calc(var(--header-inner-height) - 30px);
+        }
+
+        .header-navigation {
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        .header-navigation a,
+        .header-navigation button {
+            font-size: 1.125rem;
+            color: inherit;
+            margin-left: 1.75rem;
+            position: relative;
+            font-weight: 500;
+        }
+
+        .header-navigation a {
+            display: none;
+            font-size: 1.125rem;
+            color: inherit;
+            text-decoration: none;
+        }
+
+        .header-navigation button {
+            border: 0;
+            background-color: transparent;
+            padding: 0;
+        }
+
+        .header-navigation a:hover:after,
+        .header-navigation button:hover:after {
+            transform: scalex(1);
+        }
+
+        .header-navigation a:after,
+        .header-navigation button:after {
+            transition: 0.25s ease;
+            content: "";
+            display: block;
+            width: 100%;
+            height: 2px;
+            background-color: currentcolor;
+            transform: scalex(0);
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+        }
+
+        @media (min-width: 800px) {
+            .header-navigation a {
+                display: inline-block;
+            }
+
+            .header-navigation button {
+                display: none;
+            }
+        }
+    </style>
+
+
 </head>
 <body>
+<header class="header-outer">
+    <div class="header-inner responsive-wrapper">
+        <div class="header-logo">
+            <a href="home.html"><img class="image" src="../asssets/OfficeGAmes-removebg-preview.png" alt="Logo"></a>
+        </div>
+        <nav class="header-navigation">
+            <link href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" rel="stylesheet">
+            <link href="https://fonts.googleapis.com/css2?family=Lato&display=swap" rel="stylesheet">
 
+            <div class="search-container">
+                <input type="text" name="search" placeholder="Search..." class="search-input">
+                <a href="#" class="search-btn">
+                    <i class="fas fa-search"></i>
+                </a>
+            </div>
+            <a href="shop.html">Shop</a>
+            <a href="about-us.html">About us</a>
+            <a href="faq.html">FAQ</a>
+            <a href="login.html">Login</a>
+            <a href="warenkorb.html"><i class="fas fa-shopping-cart shopping-cart"></i></a>
+            <button>Menu</button>
+        </nav>
+    </div>
+</header>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"
+        integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+"
+        crossorigin="anonymous"></script>
 </body>
 </html>
