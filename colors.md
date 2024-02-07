@@ -1,5 +1,6 @@
- --bg-color: #fff;
+--bg-color: #fff;
     --second-bg-color: #c9c4c4;
     --text-color:#202020;
     --second-color: #026bfd;
     --main-color: #026bfd;
+    --footer-color: #013680;
