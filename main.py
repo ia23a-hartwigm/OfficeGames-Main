@@ -26,16 +26,36 @@ z.B.
 
 
 @app.route("/")
-def home() -> str:
-    print(math_service.add(1.0, 2.0))
+def home():
     app.logger.info("Rendering home page")
     return render_template("home.html")
 
 
-@app.route("/about_flask")
-def about_flask() -> str:
-    app.logger.info("Rendering About Flask page")
-    return render_template("about_flask.html")
+@app.route("/shop")
+def shop():
+    app.logger.info("Rendering shop page")
+    return render_template("shop.html")
+
+@app.route("/about")
+def about():
+    app.logger.info("Rendering shop page")
+    return render_template("about-us.html")
+
+@app.route("/faq")
+def faq():
+    app.logger.info("Rendering faq page")
+    return render_template("faq.html")
+
+
+@app.route("/login")
+def login():
+    app.logger.info("Rendering shop page")
+    return render_template("login.html")
+
+@app.route("/warenkorb")
+def warenkorb():
+    app.logger.info("Rendering warenkorb page")
+    return render_template("warenkorb.html")
 
 
 # Route to handle form submission
