@@ -7,13 +7,33 @@
 </head>
 
 <body>
-    <nav>
-        <ul>
-            <li><a href="{{ url_for('home') }}">Home</a></li>
-            <li><a href="{{ url_for('about_flask') }}">About Flask</a></li>
-            <li><a href="{{ url_for('get_languages') }}">Programmiersprachen</a></li>
-        </ul>
-    </nav>
+
+    <header class="header-outer">
+        <div class="header-inner responsive-wrapper">
+            <div class="header-logo">
+                <a href="home.html"><img class="image" src="../asssets/OfficeGAmes-removebg-preview.png" alt="Logo"></a>
+            </div>
+            <nav class="header-navigation">
+                <link href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" rel="stylesheet">
+                <link href="https://fonts.googleapis.com/css2?family=Lato&display=swap" rel="stylesheet">
+    
+                <div class="search-container">
+                    <input type="text" name="search" placeholder="Search..." class="search-input">
+                    <a href="#" class="search-btn">
+                        <i class="fas fa-search"></i>
+                    </a>
+                </div>
+                <a href="shop.html">Shop</a>
+                <a href="about-us.html">About us</a>
+                <a href="faq.html">FAQ</a>
+                <a href="login.html">Login</a>
+                <a href="warenkorb.html"><i class="fas fa-shopping-cart shopping-cart"></i></a>
+                <button>Menu</button>
+            </nav>
+        </div>
+    </header>
+
+    
 
     {% block content %}
     {% endblock %}
