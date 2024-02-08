@@ -57,6 +57,15 @@ def warenkorb():
     app.logger.info("Rendering warenkorb page")
     return render_template("warenkorb.html")
 
+@app.route("/agb")
+def agb():
+    app.logger.info("Rendering home page")
+    return render_template("agb.html")
+
+@app.route("/datenschutz")
+def datenschutz():
+    app.logger.info("Rendering home page")
+    return render_template("datenschutz.html")
 
 # Route to handle form submission
 @app.route("/submit", methods=["POST"])
