@@ -30,7 +30,7 @@ span {
 }
 
 .contact-home {
-    background: var(--bg-color);
+    background: var(--second-bg-color);
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     align-items: center;
@@ -90,7 +90,7 @@ span {
 .contact-form form input, form textarea {
     width: 100%;
     padding: 14px;
-    background: var(--second-bg-color);
+    background: var(--bg-color);
     color: var(--text-color);
     border: none;
     outline: none;
