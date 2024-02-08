@@ -7,6 +7,14 @@
     --footer-color: #013680;
 }
 
+.agb{
+    padding: 20px;
+}
+
+.agb h4{
+    color: var(--main-color);
+}
+
 .title-agb h1{
     color: var(--main-color);
 
