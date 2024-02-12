@@ -7,29 +7,17 @@
     --footer-color: #013680;
 }
 
-.welcome{
+.hello{
+    width: 100% !important;
     background-color: var(--main-color);
-    height: 100px;
-    text-align: center;
 }
 
-.welcome-title h3{
-    color: var(--bg-color);
-    
-   
-}
-
-.about-text{
-    text-align: center;
-}
-
-.about-text p{
-margin-top: 50px;
-}
 .team-section{
     margin-top: 75px;
 
 }
+
+
 .team-title h1{
     font-size: 50px;
     color:  var(--text-color);
