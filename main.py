@@ -37,68 +37,45 @@ users = [
 
 
 @app.route("/")
-def home() -> str:
+def home():
     app.logger.info("Rendering home page")
     return render_template("home.html")
 
 
 @app.route("/shop")
-def shop() -> str:
-    app.logger.info("Rendering About Flask page")
+def shop():
+    app.logger.info("Rendering shop page")
     return render_template("shop.html")
 
-
-@app.route("/about-us")
-def about_us() -> str:
-    app.logger.info("Rendering About Flask page")
+@app.route("/about")
+def about():
+    app.logger.info("Rendering shop page")
     return render_template("about-us.html")
 
-
 @app.route("/faq")
-def faq() -> str:
-    app.logger.info("Rendering About Flask page")
+def faq():
+    app.logger.info("Rendering faq page")
     return render_template("faq.html")
 
 
-@app.route("/warenkorb")
-def warenkorb() -> str:
-    app.logger.info("Rendering About Flask page")
-    return render_template("warenkorb.html")
-
-
 @app.route("/login")
-def login() -> str:
-    app.logger.info("Rendering About Flask page")
+def login():
+    app.logger.info("Rendering shop page")
     return render_template("login.html")
 
-
-@app.route("/register")
-def new_user() -> str:
-    app.logger.info("Rendering About Flask page")
-    return render_template("new_user.html")
-
-
-@app.route("/kasse")
-def kasse() -> str:
-    app.logger.info("Rendering About Flask page")
-    return render_template("kasse.html")
-
-
-@app.route("/impressum")
-def impressum() -> str:
-    app.logger.info("Rendering About Flask page")
-    return render_template("impressum.html")
-
+@app.route("/warenkorb")
+def warenkorb():
+    app.logger.info("Rendering warenkorb page")
+    return render_template("warenkorb.html")
 
 @app.route("/agb")
-def agb() -> str:
-    app.logger.info("Rendering About Flask page")
+def agb():
+    app.logger.info("Rendering home page")
     return render_template("agb.html")
 
-
 @app.route("/datenschutz")
-def datenschutz() -> str:
-    app.logger.info("Rendering About Flask page")
+def datenschutz():
+    app.logger.info("Rendering home page")
     return render_template("datenschutz.html")
 
 
