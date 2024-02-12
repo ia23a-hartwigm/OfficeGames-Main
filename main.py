@@ -59,7 +59,7 @@ def faq():
 
 
 @app.route("/login")
-def login():
+def login() -> str:
     app.logger.info("Rendering shop page")
     return render_template("login.html")
 
