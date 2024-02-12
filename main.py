@@ -1,5 +1,7 @@
 # Wir importieren zuerst das Flask-Objekt aus dem Package
-from flask import Flask, request, render_template, url_for, redirect, session
+from flask import Flask, request, render_template, url_for, redirect, session, flash, jsonify
+from flask_session import Session
+
 import services.math_service as math_service
 
 # mock data
@@ -14,7 +16,9 @@ languages = [
 # Definieren einer Variable, die die aktuelle Datei zum Zentrum
 # der Anwendung macht.
 app = Flask(__name__)
-
+app.config["SESSION_PERMANENT"] = False
+app.config["SESSION_TYPE"] = "filesystem"
+Session(app)
 """
 Festlegen einer Route für die Homepage. Der String in den Klammern
 bildet das URL-Muster ab, unter dem der folgende Code ausgeführt
@@ -23,6 +27,13 @@ z.B.
 * @app.route('/')    -> http://127.0.0.1:5000/
 * @app.route('/abc') -> http://127.0.0.1:5000/abc
 """
+
+users = [
+    {"id": 1, "username": "user1", "password": "password1"},
+    {"id": 2, "username": "user2", "password": "password2"}
+]
+
+
 
 
 @app.route("/")
@@ -91,16 +102,29 @@ def datenschutz() -> str:
     return render_template("datenschutz.html")
 
 
-@app.route("/login_do", methods=["POST", "GET"])
+@app.route("/q")
+def read_session():
+    # check if the users exist or not
+    if not session.get("user"):
+        # if not there in the session then redirect to the login page
+        return redirect("/login")
+    return jsonify(session.get("user"))
+
+
+
+@app.route("/login_do", methods=["POST"])
 def login_do():
-    # if form is submited
     if request.method == "POST":
-        # record the user name
-        session["name"] = request.form.get("name")
-        session["pw"] = request.form.get("pw")
-        # redirect to the main page
-        return redirect("/")
-    return render_template("login.html")
+        username = request.form["name"]
+        password = request.form["password"]
+
+        # Simple check against hardcoded credentials
+        for user in users:
+            if username == user.get('username') and password == user.get('password'):
+                # Credentials matched, set user session
+                session["user"] = user.get('id')
+                return "It Works"  # Redirect to home or another secure page
+        return "wrong"
 
 
 '''
