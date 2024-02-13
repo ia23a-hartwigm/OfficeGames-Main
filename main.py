@@ -2,20 +2,10 @@
 import psycopg2 as psycopg2
 from flask import Flask, request, render_template, url_for, redirect, session, flash, jsonify
 from flask_session import Session
+import json
 
 import services.math_service as math_service
 
-conn = psycopg2.connect(database="flask_db",
-						user="postgres",
-						password="root",
-						host="localhost", port="5432")
-
-cur = conn.cursor()
-
-conn.commit()
-
-cur.close()
-conn.close()
 
 
 
@@ -43,6 +33,28 @@ z.B.
 * @app.route('/abc') -> http://127.0.0.1:5000/abc
 """
 
+def connect_to_database():
+    # Connection string for PostgreSQL
+    connection_string = "postgres://admin:pF0jxrVmWapytgfJw2t7EzzYIAbFbgbz@dpg-cn14gin109ks73ccr1c0-a.frankfurt-postgres.render.com/officegames_db" #"dbname=officegames_db user=admin password=pF0jxrVmWapytgfJw2t7EzzYIAbFbgbz host=dpg-cn14gin109ks73ccr1c0-a.frankfurt-postgres.render.com port=5432"
+    # Establish a connection to the PostgreSQL database
+    conn = psycopg2.connect(connection_string)
+    return conn
+
+def create_cursor(conn):
+    return conn.cursor()
+
+def get_user_info(cursor):
+    query = "SELECT * FROM coworker"
+    cursor.execute(query)
+
+    results = cursor.fetchall()
+
+    if results:
+        return json.dumps(results)
+    else:
+        return None
+
+
 users = [
     {"id": 1, "username": "user1", "password": "password1"},
     {"id": 2, "username": "user2", "password": "password2"}
@@ -56,7 +68,14 @@ def home():
     app.logger.info("Rendering home page")
     return render_template("home.html")
 
-
+@app.route("/h")
+def test():
+    connection = connect_to_database()
+    cursor = create_cursor(connection)
+    user_info = get_user_info(cursor)
+    cursor.close()
+    connection.close()
+    return user_info
 @app.route("/shop")
 def shop():
     app.logger.info("Rendering shop page")
@@ -153,4 +172,11 @@ def hello_world() -> str:
 '''
 
 if __name__ == '__main__':
+    connection = connect_to_database()
+    cursor = create_cursor(connection)
+    user_info = get_user_info(cursor)
+    print(user_info)
+    cursor.close()
+    connection.close()
+
     app.run()
