@@ -12,6 +12,7 @@
 
 header{
     z-index: 100 !important;
+    position: fixed;
 }
 .header-logo {
     flex: 1;

@@ -1,10 +1,72 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends 'base.html' %}
 
-</body>
-</html>
+{% block title %}AGB{% endblock %}
+
+{% block content %}
+
+
+    <section class="faq-section">
+        <h1 class="faq-title">FAQ</h1>
+        <ul class="faq">
+            <li>
+                <div class="q">
+                    <span class="arrow"></span>
+                    <span>Question 1</span>
+                </div>
+                <div class="a">
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Harum a numquam eum enim corrupti
+                        consequuntur impedit sint cupiditate vero iste exercitationem hic fuga ullam, delectus
+                        voluptate, voluptatem adipisci. Ea labore obcaecati odit, eos fugit mollitia perspiciatis maxime
+                        ipsum? Id nam ad omnis! Quae animi ex pariatur odit omnis dolorem porro.</p>
+                </div>
+            </li>
+
+            <li>
+                <div class="q">
+                    <span class="arrow"></span>
+                    <span>Question 2</span>
+                </div>
+                <div class="a">
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Harum a numquam eum enim corrupti
+                        consequuntur impedit sint cupiditate vero iste exercitationem hic fuga ullam, delectus
+                        voluptate, voluptatem adipisci. Ea labore obcaecati odit, eos fugit mollitia perspiciatis maxime
+                        ipsum? Id nam ad omnis! Quae animi ex pariatur odit omnis dolorem porro.</p>
+                </div>
+            </li>
+
+            <li>
+                <div class="q">
+                    <span class="arrow"></span>
+                    <span>Question 3</span>
+                </div>
+                <div class="a">
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Harum a numquam eum enim corrupti
+                        consequuntur impedit sint cupiditate vero iste exercitationem hic fuga ullam, delectus
+                        voluptate, voluptatem adipisci. Ea labore obcaecati odit, eos fugit mollitia perspiciatis maxime
+                        ipsum? Id nam ad omnis! Quae animi ex pariatur odit omnis dolorem porro.</p>
+                </div>
+            </li>
+        </ul>
+
+    </section>
+
+    <script>
+        const q = document.querySelectorAll('.q');
+        const a = document.querySelectorAll('.a');
+        const arr = document.querySelectorAll('.arrow');
+
+        for(let i = 0; i < q.length; i++) {
+            q[i].addEventListener('click', () => {
+                a[i].classList.toggle('a-opened');
+                arr[i].classList.toggle('arrow-rotated');
+            });
+        }
+
+    </script>
+
+    
+
+{% endblock %}
+
+
+
