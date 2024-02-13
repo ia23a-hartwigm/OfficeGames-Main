@@ -80,6 +80,11 @@ def datenschutz():
     app.logger.info("Rendering home page")
     return render_template("datenschutz.html")
 
+@app.route("/contact")
+def contact():
+    app.logger.info("Rendering home page")
+    return render_template("contact.html")
+
 
 @app.route("/q")
 def read_session():
