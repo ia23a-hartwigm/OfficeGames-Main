@@ -1,0 +1,122 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+    text-decoration: none;
+    list-style: none;
+    scroll-behavior: smooth;
+}
+
+:root {
+    --bg-color: #fff;
+    --second-bg-color: #c9c4c4;
+    --text-color: #202020;
+    --second-color: #026bfd;
+    --main-color: #026bfd;
+    --big-font: 5rem;
+    --h2-font: 3rem;
+    --p-font: 1.1rem;
+
+}
+
+body {
+    background: var(--bg-color);
+    color: var(--text-color);
+}
+
+span {
+    color: var(--main-color);
+}
+
+.contact-home {
+    background: var(--second-bg-color);
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    align-items: center;
+    gap: 2.5rem;
+    padding: 15px;
+
+}
+
+.contact-home-text h4 {
+    color: var(--text-color);
+    margin: 18px 0;
+    font-size: 20px;
+    font-weight: 600;
+}
+
+.contact-home-text h2 {
+    font-size: var(--h2-font);
+    line-height: 1;
+}
+
+.contact-home-text p {
+    color: var(--text-color);
+    font-size: var(--p-font);
+    line-height: 1.8;
+
+}
+
+.list {
+    margin-top: 30px;
+    margin-bottom: 2.8rem;
+    text-decoration: none;
+}
+
+.list li {
+    margin-bottom: 12px;
+}
+
+.list li a {
+    display: block;
+    color: var(--text-color);
+    font-size: 14px;
+    transition: all .45s ease;
+
+}
+
+.list li a:hover {
+    color: var(--main-color);
+    transform: translateX(5px);
+}
+
+
+.contact-form form {
+    position: relative;
+
+}
+
+.contact-form form input, form textarea {
+    width: 100%;
+    padding: 14px;
+    background: var(--bg-color);
+    color: var(--text-color);
+    border: none;
+    outline: none;
+    font-size: 15px;
+    border-radius: 8px;
+    margin-bottom: 10px;
+
+
+}
+
+.contact-form textarea {
+    resize: none;
+    height: 240px;
+}
+
+.contact-form .submit {
+    display: inline-block;
+    font-size: 16px;
+    background: var(--main-color);
+    color: var(--bg-color);
+    width: 100%;
+    transition: all .45s ease;
+}
+
+.contact-form .submit:hover {
+    color: var(--text-color);
+    transform: scale(0.99);
+    cursor: pointer;
+}
