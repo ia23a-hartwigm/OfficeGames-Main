@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 NEW COLORS!!!
 
 --light pink: #ffd6ff
@@ -15,11 +14,6 @@ NEW COLORS!!!
     --big-font: 5rem;
     --h2-font: 3rem;
     --p-font: 1.1rem;
-=======
---bg-color: #fff;
-    --second-bg-color: #c9c4c4;
-    --text-color:#202020;
-    --second-color: #024aff;
-    --main-color: #026bfd;
-    --footer-color: #013680;
->>>>>>> f646c9aaa0aecff92e1d3ef4d951be2918b1cd4d
+
+
+    https://www.youtube.com/watch?v=TVFu4-Kd4oM
