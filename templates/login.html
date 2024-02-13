@@ -1,4 +1,8 @@
-<link rel="stylesheet" href="../../static/login.css">
+{% extends 'base.html' %}
+
+{% block title %}Login{% endblock %}
+
+{% block content %}
 <form action="{{ url_for('login_do') }}" method="post">
   <div class="container">
     <label for="name"><b>Username</b></label>
@@ -18,6 +22,7 @@
     <span class="psw"><a href="#">Forgot password?</a></span>
   </div>
 </form>
+{% endblock %}
 
 <script>
 var modal = document.getElementById('id01');
@@ -28,3 +33,4 @@ window.onclick = function(event) {
   }
 }
 </script>
+
