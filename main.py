@@ -1,8 +1,23 @@
 # Wir importieren zuerst das Flask-Objekt aus dem Package
+import psycopg2 as psycopg2
 from flask import Flask, request, render_template, url_for, redirect, session, flash, jsonify
 from flask_session import Session
 
 import services.math_service as math_service
+
+conn = psycopg2.connect(database="flask_db",
+						user="postgres",
+						password="root",
+						host="localhost", port="5432")
+
+cur = conn.cursor()
+
+conn.commit()
+
+cur.close()
+conn.close()
+
+
 
 # mock data
 languages = [
