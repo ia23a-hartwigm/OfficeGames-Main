@@ -1,7 +1,19 @@
+
+
+
 footer ul li a {
     text-decoration: none !important;
 }
 
-a{
+a {
     text-decoration: none !important;
+    
+}
+
+.text-center .p-3 {
+    background-color: #00254f;
+}
+
+.text-center .p-3 a{
+    color: white;
 }

@@ -12,6 +12,7 @@
 
 .hello{
     width: 100% !important;
+    background-color: var(--main-color);
 }
 div a {
     text-decoration: none;
