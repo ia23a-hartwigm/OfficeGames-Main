@@ -1,6 +1,8 @@
---bg-color: #fff;
-    --second-bg-color: #c9c4c4;
-    --text-color:#202020;
-    --second-color: #024aff;
-    --main-color: #026bfd;
-    --footer-color: #013680;
+NEW COLORS!!!
+
+--light pink: #ffd6ff
+--pink purple: #e7c6ff
+--lavender: #c8b6ff
+--blue: #b8c0ff
+--light blue: #bbd0ff
+--white: #ffffff
