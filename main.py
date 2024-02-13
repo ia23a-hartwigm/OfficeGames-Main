@@ -6,9 +6,6 @@ import json
 
 import services.math_service as math_service
 
-
-
-
 # mock data
 languages = [
     {"name": "Python", "creator": "Guido van Rossum", "year": 1991},
@@ -33,15 +30,20 @@ z.B.
 * @app.route('/abc') -> http://127.0.0.1:5000/abc
 """
 
+db_config = "postgres://admin:pF0jxrVmWapytgfJw2t7EzzYIAbFbgbz@dpg-cn14gin109ks73ccr1c0-a.frankfurt-postgres.render.com/officegames_db"
+
+
 def connect_to_database():
     # Connection string for PostgreSQL
-    connection_string = "postgres://admin:pF0jxrVmWapytgfJw2t7EzzYIAbFbgbz@dpg-cn14gin109ks73ccr1c0-a.frankfurt-postgres.render.com/officegames_db" #"dbname=officegames_db user=admin password=pF0jxrVmWapytgfJw2t7EzzYIAbFbgbz host=dpg-cn14gin109ks73ccr1c0-a.frankfurt-postgres.render.com port=5432"
+    connection_string = "postgres://admin:pF0jxrVmWapytgfJw2t7EzzYIAbFbgbz@dpg-cn14gin109ks73ccr1c0-a.frankfurt-postgres.render.com/officegames_db"
     # Establish a connection to the PostgreSQL database
     conn = psycopg2.connect(connection_string)
     return conn
 
+
 def create_cursor(conn):
     return conn.cursor()
+
 
 def get_user_info(cursor):
     query = "SELECT * FROM coworker"
@@ -61,12 +63,11 @@ users = [
 ]
 
 
-
-
 @app.route("/")
 def home():
     app.logger.info("Rendering home page")
     return render_template("home.html")
+
 
 @app.route("/h")
 def test():
@@ -76,15 +77,19 @@ def test():
     cursor.close()
     connection.close()
     return user_info
+
+
 @app.route("/shop")
 def shop():
     app.logger.info("Rendering shop page")
     return render_template("shop.html")
 
+
 @app.route("/about")
 def about():
     app.logger.info("Rendering shop page")
     return render_template("about-us.html")
+
 
 @app.route("/faq")
 def faq():
@@ -97,15 +102,18 @@ def login() -> str:
     app.logger.info("Rendering shop page")
     return render_template("login.html")
 
+
 @app.route("/warenkorb")
 def warenkorb():
     app.logger.info("Rendering warenkorb page")
     return render_template("warenkorb.html")
 
+
 @app.route("/agb")
 def agb():
     app.logger.info("Rendering home page")
     return render_template("agb.html")
+
 
 @app.route("/datenschutz")
 def datenschutz():
@@ -122,19 +130,31 @@ def read_session():
     return jsonify(session.get("user"))
 
 
-
 @app.route("/login_do", methods=["POST"])
 def login_do():
     if request.method == "POST":
         username = request.form["name"]
         password = request.form["password"]
 
-        # Simple check against hardcoded credentials
-        for user in users:
-            if username == user.get('username') and password == user.get('password'):
-                # Credentials matched, set user session
-                session["user"] = user.get('id')
-                return "It Works"  # Redirect to home or another secure page
+        # Connect to your PostgreSQL database
+        conn = psycopg2.connect(db_config)
+        cur = conn.cursor()
+
+    # Query to check if the user exists with the provided username and password
+    cur.execute("SELECT customersid FROM customers WHERE email = %s AND password = %s", (username, password))
+    user = cur.fetchone()
+    print(user)
+
+    if user:
+        # Credentials matched, set user session
+        session["user"] = user[0]  # Assuming 'id' is the first column
+        cur.close()
+        conn.close()
+        return "It Works"  # Redirect to home or another secure page
+    else:
+        # Close connection
+        cur.close()
+        conn.close()
         return "wrong"
 
 
@@ -181,5 +201,4 @@ if __name__ == '__main__':
 
     app.run()
 
-
-#test
+# test
