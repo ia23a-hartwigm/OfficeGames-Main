@@ -3,34 +3,42 @@
 {% block title %}Login{% endblock %}
 
 {% block content %}
-<form action="{{ url_for('login_do') }}" method="post">
-  <div class="container">
-    <label for="name"><b>Username</b></label>
-    <input type="text" placeholder="Enter Username" name="name" required id="name">
 
-    <label for="password"><b>Password</b></label>
-    <input type="password" placeholder="Enter Password" name="password" required id="password">
+    <div class="login-light"></div>
+    <div class="login-box">
+        <form action="#">
+            <input type="checkbox" class="input-check" id="input-check">
+           
 
-    <button type="submit">Login</button>
-    <label>
-      <input type="checkbox" checked="checked" name="remember"> Remember me
-    </label>
-  </div>
+            <h2 class="login-h2">Login</h2>
+            <div class="input-box">
+                <span class="icon">
+                    <ion-icon name="mail"></ion-icon>
+                </span>
+                <input type="email" required>
+                <label>Email</label>
+                <div class="input-line"></div>
+            </div>
+            <div class="input-box">
+                <span class="icon">
+                    <ion-icon name="lock-closed"></ion-icon>
+                </span>
+                <input type="password" required>
+                <label>Password</label>
+                <div class="input-line"></div>
+            </div>
+            <div class="remember-forgot">
+                <label><input type="checkbox"> Remember me</label>
+                <a href="#">Forgot Password?</a>
+            </div>
+            <button type="submit">Login</button>
+            <div class="register-link">
+                <p>Don't have an account? <a href="#">Register</a></p>
+            </div>
+        </form>
+    </div>
 
-  <div class="container" style="background-color:#f1f1f1">
-    <button type="button" class="cancelbutton">Cancel</button>
-    <span class="psw"><a href="#">Forgot password?</a></span>
-  </div>
-</form>
+
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
 {% endblock %}
-
-<script>
-var modal = document.getElementById('id01');
-
-window.onclick = function(event) {
-  if (event.target == modal) {
-    modal.style.display = "none";
-  }
-}
-</script>
-

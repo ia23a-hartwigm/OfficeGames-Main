@@ -1,5 +1,6 @@
-
-
+.text-center .p-3 {
+    background-color: #022352 !important;
+}
 
 footer ul li a {
     text-decoration: none !important;
