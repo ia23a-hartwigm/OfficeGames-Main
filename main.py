@@ -45,7 +45,7 @@ def create_cursor(conn):
     return conn.cursor()
 
 
-def get_user_info(cursor):
+def get_coworker(cursor):
     # Define the keys that will be used to create the dictionaries
     keys = ["coworkerid", "first_name", "last_name", "coworker_role", "description", "favorite_product"]
 
@@ -64,6 +64,25 @@ def get_user_info(cursor):
     else:
         return None
 
+def get_products(cursor):
+    # Define the keys that will be used to create the dictionaries
+    keys = ["productid", "name_product", "rating", "price", "is_sale", "sale", "description"]
+
+    # Query to fetch data from the coworker table
+    query = "SELECT productid, name_product, rating, price, is_sale, sale, description FROM product"
+    cursor.execute(query)
+
+    # Fetch all rows from the query result
+    results = cursor.fetchall()
+
+    # Check if there are any results
+    if results:
+        # Convert the list of tuples into a list of dictionaries
+        list_of_products = [dict(zip(keys, row)) for row in results]
+        return list_of_products
+    else:
+        return None
+
 
 users = [
     {"id": 1, "username": "user1", "password": "password1"},
@@ -78,10 +97,10 @@ def home():
 
 
 @app.route("/about")
-def test():
+def about():
     connection = connect_to_database()
     cursor = create_cursor(connection)
-    coworkers_info = get_user_info(cursor)
+    coworkers_info = get_coworker(cursor)
     cursor.close()
     connection.close()
     return render_template("about.html", coworkers=coworkers_info)
@@ -90,14 +109,16 @@ def test():
 
 @app.route("/shop")
 def shop():
-    app.logger.info("Rendering shop page")
-    return render_template("shop.html")
+    connection = connect_to_database()
+    cursor = create_cursor(connection)
+    product_info = get_products(cursor)
+    cursor.close()
+    connection.close()
+    print(product_info)
+    return render_template("shop.html", product_info=product_info)
 
 
-@app.route("/about")
-def about():
-    app.logger.info("Rendering shop page")
-    return render_template("about-us.html")
+
 
 
 @app.route("/faq")
@@ -206,12 +227,7 @@ def hello_world() -> str:
 '''
 
 if __name__ == '__main__':
-    connection = connect_to_database()
-    cursor = create_cursor(connection)
-    user_info = get_user_info(cursor)
-    print(user_info)
-    cursor.close()
-    connection.close()
+
 
     app.run()
 

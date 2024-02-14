@@ -6,6 +6,7 @@
 <section class="products" id="products">
     <h1 class="heading">Shop</h1>
     <div class="box-container">
+        {% for product in product_info %}
         <div class="box">
             <div class="icons">
                 <a href="" class="fas fa-shopping-cart"></a>
@@ -15,141 +16,20 @@
                 <img src="/static/asssets/answerWheel.webp" alt="">
             </div>
             <div class="content">
-                <h3>Product 1</h3>
+                <h3>{{ product.name_product }}</h3>
                 <div class="stars">
                     <i class="fas fa-star"></i>
                     <i class="fas fa-star"></i>
                     <i class="fas fa-star"></i>
                 </div>
-                <div class="price">10.95 CHF <span>30.95 CHF</span></div>
+                {% if product.is_sale == True %}
+                    <div class="price">{{ product.sale }}<span>{{ product.price }}</span></div>
+                {% else %}
+                    <div class="price">{{ product.price }}</div>
+                {% endif%}
             </div>
         </div>
-        <div class="box">
-            <div class="icons">
-                <a href="" class="fas fa-shopping-cart"></a>
-                <a href="" class="fas fa-eye"></a>
-            </div>
-            <div class="image">
-                <img src="/static/asssets/answerWheel.webp" alt="">
-            </div>
-            <div class="content">
-                <h3>Product 1</h3>
-                <div class="stars">
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                </div>
-                <div class="price">20.95 CHF <span>10.95 CHF</span></div>
-            </div>
-        </div>
-        <div class="box">
-            <div class="icons">
-                <a href="" class="fas fa-shopping-cart"></a>
-                <a href="" class="fas fa-eye"></a>
-            </div>
-            <div class="image">
-                <img src="/static/asssets/WoodBoard.png" alt="">
-            </div>
-            <div class="content">
-                <h3>Product 1</h3>
-                <div class="stars">
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                </div>
-                <div class="price">34.95 CHF <span>59.95 CHF</span></div>
-            </div>
-        </div>
-        <div class="box">
-            <div class="icons">
-                <a href="" class="fas fa-shopping-cart"></a>
-                <a href="" class="fas fa-eye"></a>
-            </div>
-            <div class="image">
-                <img src="/static/asssets/basketOnDesk.jpg" alt="">
-            </div>
-            <div class="content">
-                <h3>Product 1</h3>
-                <div class="stars">
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                </div>
-                <div class="price">69.95 CHF</div>
-            </div>
-        </div>
-        <div class="box">
-            <div class="icons">
-                <a href="" class="fas fa-shopping-cart"></a>
-                <a href="" class="fas fa-eye"></a>
-            </div>
-            <div class="image">
-                <img src="/static/asssets/MultiTable.png.webp" alt="">
-            </div>
-            <div class="content">
-                <h3>Product 1</h3>
-                <div class="stars">
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                </div>
-                <div class="price">99.95 CHF</div>
-            </div>
-        </div>
-        <div class="box">
-            <div class="icons">
-                <a href="" class="fas fa-shopping-cart"></a>
-                <a href="" class="fas fa-eye"></a>
-            </div>
-            <div class="image">
-                <img src="/static/asssets/Boxing.webp" alt="">
-            </div>
-            <div class="content">
-                <h3>Product 1</h3>
-                <div class="stars">
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                </div>
-                <div class="price">20.95 CHF</div>
-            </div>
-        </div>
-        <div class="box">
-            <div class="icons">
-                <a href="" class="fas fa-shopping-cart"></a>
-                <a href="" class="fas fa-eye"></a>
-            </div>
-            <div class="image">
-                <img src="/static/asssets/answerWheel.webp" alt="">
-            </div>
-            <div class="content">
-                <h3>Product 1</h3>
-                <div class="stars">
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                </div>
-                <div class="price">25.95 CHF <span>18.95 CHF</span></div>
-            </div>
-        </div>
-        <div class="box">
-            <div class="icons">
-                <a href="" class="fas fa-shopping-cart"></a>
-                <a href="" class="fas fa-eye"></a>
-            </div>
-            <div class="image">
-                <img src="/static/asssets/Bauklötze.png" alt="">
-            </div>
-            <div class="content">
-                <h3>Product 1</h3>
-                <div class="stars">
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                </div>
-                <div class="price">12.95 CHF <span>18.95 CHF</span></div>
-            </div>
-        </div>
+        {% endfor %}
 
     </div>
 </section>
