@@ -212,6 +212,10 @@ letter-spacing: .2rem;
     .header{
         padding: 1.5rem 3rem;
     }
+
+    section{
+        padding: 2rem;
+    }
 }
 
 @media (max-width:768px){
@@ -245,6 +249,8 @@ letter-spacing: .2rem;
         width: 90%;
         right: 2rem;
     }
+
+    
 
 }
 
