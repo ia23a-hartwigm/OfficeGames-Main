@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block title %}Login{% endblock %}
+
+{% block content %}
+
+    <body>
+    <div class="wrapper">
+        <div class="form-box login">
+            <h2>Login</h2>
+            <form action="#">
+                <div class="input-box">
+                    <span class="icon"><i class="fa-solid fa-envelope"></i></span>
+                    <input type="email" required>
+                    <label>Email</label>
+                </div>
+                <div class="input-box">
+                    <span class="icon"><i class="fa-solid fa-lock"></i></span>
+                    <input type="password" required>
+                    <label>Passwort</label>
+                </div>
+                <div class="remember-forget">
+                    <label></label>
+                </div>
+            </form>
+        </div>
+    </div>
+    </body>
+
+{% endblock %}
