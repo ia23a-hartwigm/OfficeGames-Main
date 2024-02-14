@@ -64,6 +64,7 @@ def get_coworker(cursor):
     else:
         return None
 
+
 def get_products(cursor):
     # Define the keys that will be used to create the dictionaries
     keys = ["productid", "name_product", "rating", "price", "is_sale", "sale", "description"]
@@ -106,7 +107,6 @@ def about():
     return render_template("about.html", coworkers=coworkers_info)
 
 
-
 @app.route("/shop")
 def shop():
     connection = connect_to_database()
@@ -117,13 +117,13 @@ def shop():
     return render_template("shop.html", product_info=product_info)
 
 
-
-
-
+'''
 @app.route("/faq")
 def faq():
     app.logger.info("Rendering faq page")
     return render_template("faq.html")
+
+'''
 
 
 @app.route("/login")
@@ -159,6 +159,36 @@ def read_session():
     return jsonify(session.get("user"))
 
 
+def kasse_fillin(cursor):
+    # Define the keys that will be used to create the dictionaries
+    keys = ["first_name", "last_name", "company_name", "country", "street", "plz", "city", "tel", "email"]
+
+    # Query to fetch data from the coworker table
+    query = "SELECT first_name, last_name, company_name, country, street, plz, city, tel, email FROM customers WHERE customerid = %s",(session.get("user"))
+    cursor.execute(query)
+
+    # Fetch all rows from the query result
+    results = cursor.fetchall()
+
+    # Check if there are any results
+    if results:
+        # Convert the list of tuples into a list of dictionaries
+        list_of_products = [dict(zip(keys, row)) for row in results]
+        return list_of_products
+    else:
+        return None
+
+
+@app.route("/kasse")
+def kasse():
+    connection = connect_to_database()
+    cursor = create_cursor(connection)
+    product_info = kasse_fillin(cursor)
+    cursor.close()
+    connection.close()
+    return render_template("kasse.html", product_info=product_info)
+
+
 @app.route("/login_do", methods=["POST"])
 def login_do():
     if request.method == "POST":
@@ -185,11 +215,6 @@ def login_do():
         cur.close()
         conn.close()
         return "wrong"
-
-
-@app.route("/get_languages")
-def get_languages() -> str:
-    return render_template("languages.html", languages=languages)
 
 
 '''
@@ -226,8 +251,6 @@ def hello_world() -> str:
 '''
 
 if __name__ == '__main__':
-
-
     app.run()
 
 # test
