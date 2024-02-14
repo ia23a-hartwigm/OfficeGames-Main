@@ -40,21 +40,28 @@
 }
 
 .btn:hover {
-
     letter-spacing: .2rem;
 }
 
-body {
-    background: url("../asssets/wave.jpg");
-    text-align: center;
+.login {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: url("../asssets/cloudsWallpaper.jpg") no-repeat center;
+    background-size: cover;
 }
 
-.wrapper {
-    text-align: left;
-    margin: 40rem 0 0;
+body .wrapper {
     position: relative;
     width: 400px;
     height: 440px;
     background: transparent;
     border: 2px solid rgba(255, 255, 255, .5);
+    border-radius: 20px;
+    backdrop-filter: blur(20px);
+    box-shadow: 0 0 30px rgba(0, 0, 0, .5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
