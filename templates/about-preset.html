@@ -1,0 +1,15 @@
+
+{% block title %}about-preset{% endblock %}
+
+{% block content %}
+        {% for coworker in coworkers %}
+        <div>
+            <p>{{ coworker.coworkerid }}</p>
+            <p>{{ coworker.first_name }}</p>
+            <p>{{ coworker.last_name }}</p>
+            <p>{{ coworker.coworker_role }}</p>
+            <p>{{ coworker.description }}</p>
+            <p>{{ coworker.favorite_product }}</p>
+        </div>
+        {% endfor %}
+{% endblock %}
