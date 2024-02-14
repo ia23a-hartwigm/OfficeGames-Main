@@ -164,8 +164,8 @@ def kasse_fillin(cursor):
     keys = ["first_name", "last_name", "company_name", "country", "street", "plz", "city", "tel", "email"]
 
     # Query to fetch data from the coworker table
-    query = "SELECT first_name, last_name, company_name, country, street, plz, city, tel, email FROM customers WHERE customerid = %s",(session.get("user"))
-    cursor.execute(query)
+    query = ("SELECT (first_name, last_name, company_name, country, street, plz, city, tel, email) FROM customers WHERE customerid = %s")
+    cursor.execute(query, session.get("user"))
 
     # Fetch all rows from the query result
     results = cursor.fetchall()
