@@ -18,19 +18,24 @@
             <div class="content">
                 <h3>{{ product.name_product }}</h3>
                 <div class="stars">
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
+                    {% for i in range(1, 6) %} <!-- Loop from 1 to 5 -->
+                    {% if i <= product.rating %}
+                    <i class="fas fa-star"></i> <!-- Filled star for rating -->
+                    {% else %}
+                    <i class="far fa-star"></i> <!-- Empty star for the rest -->
+                    {% endif %}
+                    {% endfor %}
                 </div>
+
                 {% if product.is_sale == True %}
-                    <div class="price">{{ product.sale }}<span>{{ product.price }}</span></div>
+                <div class="price">{{ product.sale }}<span>{{ product.price }}</span></div>
                 {% else %}
-                    <div class="price">{{ product.price }}</div>
+                <div class="price">{{ product.price }}</div>
                 {% endif%}
             </div>
         </div>
         {% endfor %}
-
+        1
     </div>
 </section>
 {% endblock %}
