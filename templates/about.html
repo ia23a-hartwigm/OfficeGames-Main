@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% block title %}About us{% endblock %}
+
+{% block content %}
+
+
+<section class="about">
+    <section class="team-section">
+        <div class="team-title">
+            <h1>Our Team</h1>
+            <div class="team-cards">
+                {% for coworker in coworkers %}
+                <div class="team-card">
+                    <div class="team-image">
+                        <img src="/static/asssets/marc.jpg" alt="bild">
+                    </div>
+                    <div class="team-detail">
+                        <h3>{{ coworker.first_name }} {{ coworker.last_name }}</h3>
+                        <p>{{ coworker.coworker_role }}</p>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+    
+
+
+</section>
+
+
+{% endblock %}
