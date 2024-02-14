@@ -145,10 +145,10 @@ def agb():
     return render_template("agb.html")
 
 
-@app.route("/datenschutz")
-def datenschutz():
+@app.route("/review")
+def review():
     app.logger.info("Rendering home page")
-    return render_template("datenschutz.html")
+    return render_template("review.html")
 
 
 @app.route("/q")
