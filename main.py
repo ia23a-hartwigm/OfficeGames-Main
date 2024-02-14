@@ -46,13 +46,21 @@ def create_cursor(conn):
 
 
 def get_user_info(cursor):
-    query = "SELECT * FROM coworker"
+    # Define the keys that will be used to create the dictionaries
+    keys = ["coworkerid", "first_name", "last_name", "coworker_role", "description", "favorite_product"]
+
+    # Query to fetch data from the coworker table
+    query = "SELECT coworkerid, first_name, last_name, coworker_role, description, favorite_product FROM coworker"
     cursor.execute(query)
 
+    # Fetch all rows from the query result
     results = cursor.fetchall()
 
+    # Check if there are any results
     if results:
-        return json.dumps(results)
+        # Convert the list of tuples into a list of dictionaries
+        list_of_dicts = [dict(zip(keys, row)) for row in results]
+        return list_of_dicts
     else:
         return None
 
@@ -69,14 +77,15 @@ def home():
     return render_template("home.html")
 
 
-@app.route("/h")
+@app.route("/about")
 def test():
     connection = connect_to_database()
     cursor = create_cursor(connection)
-    user_info = get_user_info(cursor)
+    coworkers_info = get_user_info(cursor)
     cursor.close()
     connection.close()
-    return user_info
+    return render_template("about.html", coworkers=coworkers_info)
+
 
 
 @app.route("/shop")
@@ -158,6 +167,11 @@ def login_do():
         return "wrong"
 
 
+@app.route("/get_languages")
+def get_languages() -> str:
+    return render_template("languages.html", languages=languages)
+
+
 '''
 # Route to handle form submission
 @app.route("/submit", methods=["POST"])
@@ -202,4 +216,3 @@ if __name__ == '__main__':
     app.run()
 
 # test
-
