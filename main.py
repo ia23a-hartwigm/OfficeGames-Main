@@ -114,7 +114,6 @@ def shop():
     product_info = get_products(cursor)
     cursor.close()
     connection.close()
-    print(product_info)
     return render_template("shop.html", product_info=product_info)
 
 
