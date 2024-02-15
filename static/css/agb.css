@@ -1,21 +1,42 @@
 :root{
-    --bg-color: #fff;
-    --second-bg-color: #c9c4c4;
-    --text-color:#202020;
-    --second-color: #026bfd;
-    --main-color: #026bfd;                
-    --footer-color: #013680;
+    --main-color: #d3ad7f;
+    --black: #13131a;
+    --bg: #010103;
+    --border: .1rem solid rgba(255,255,255,.3);
 }
 
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    outline: none;
+    border: none;
+    text-decoration: none;
+    text-transform: capitalize;
+    transition: .2s linear;
+}
+
+
 .agb{
-    padding: 20px;
+    margin-left: 3rem;
+    margin-right: 3rem;
+    margin-top: 20rem;
+    margin-bottom: 3rem;
 }
 
 .agb h4{
     color: var(--main-color);
+    font-size: 3rem;
 }
 
 .title-agb h1{
     color: var(--main-color);
+    font-size: 4rem
+
+}
+
+.agb .agb-content p{
+    color: #fff;
+    font-size: 1.5rem;
 
 }
