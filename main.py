@@ -137,6 +137,11 @@ def warenkorb():
     app.logger.info("Rendering warenkorb page")
     return render_template("warenkorb.html")
 
+@app.route("/contact")
+def contact():
+    app.logger.info("Rendering contact page")
+    return render_template("contact.html")
+
 
 @app.route("/agb")
 def agb():
