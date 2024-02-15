@@ -104,3 +104,8 @@ letter-spacing: .2rem;
     text-transform: none;
     background: none;
 }
+
+iframe{
+    width: 40%;
+    height: auto;
+}
