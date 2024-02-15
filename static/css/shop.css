@@ -1,5 +1,5 @@
 :root{
-    --main-color: #d3ad7f;
+    --main-color: blueviolet;
     --black: #13131a;
     --bg: #010103;
     --border: .1rem solid rgba(255,255,255,.3);
@@ -89,7 +89,6 @@ letter-spacing: .2rem;
 
 .products .box-container .box .content .stars{
     padding: 1.5rem;
-
 }
 
 .products .box-container .box .content .stars i{

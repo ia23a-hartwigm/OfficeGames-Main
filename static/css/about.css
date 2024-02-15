@@ -1,5 +1,5 @@
 :root{
-    --main-color: #d3ad7f;
+    --main-color: blueviolet;
     --black: #13131a;
     --bg: #010103;
     --border: .1rem solid rgba(255,255,255,.3);
@@ -40,14 +40,11 @@
 }
 
 .btn:hover{
-
-letter-spacing: .2rem;
+    letter-spacing: .2rem;
 }
-
 
 .team-section{
     margin-top: 75px;
-
 }
 
 .about{
@@ -57,13 +54,11 @@ letter-spacing: .2rem;
     margin-top: 10rem;
 }
 
-
 .team-title h1{
     font-size: 50px;
     color:  var(--text-color);
     text-align: center;
     position: relative;
-
 }
 
 .team-cards{
@@ -72,12 +67,10 @@ letter-spacing: .2rem;
     grid-template-columns: repeat(2, 1fr);
     justify-content: space-between;
     margin: 20px auto;
-
-
 }
 
 .team-card{
-    background-color: var(--main-color);
+    background-color: blueviolet;
     border-radius: 50px;
     box-shadow: 0px 2px 5px rgba(0,0,0, 0.2);
     margin: 10px 20px;
@@ -88,6 +81,10 @@ letter-spacing: .2rem;
 
 .team-card:hover{
     transform: scale(1.1);
+    background-color: blueviolet;
+    border-color: white;
+    border-width: thin;
+    box-shadow: 0px 2px 5px rgba(0,0,0, 0.2), 0 0 0 3px white;
 }
 
 .team-image img{
@@ -96,7 +93,7 @@ letter-spacing: .2rem;
     width: 130px;
     object-fit: cover;
     margin-bottom: 10px;
-
+    border: var(--border);
 }
 
 .team-detail h3{
@@ -104,7 +101,17 @@ letter-spacing: .2rem;
     font-size: 30px;
     margin: 15px 0px;
 }
+
 .team-detail p{
     color: var(--second-bg-color);
     font-size: 18px;
+}
+
+.team-image img:hover {
+    border-color: white;
+}
+
+.team-card:hover .team-image img {
+    border-color: white;
+    box-shadow: 0 0 10px 5px white;
 }

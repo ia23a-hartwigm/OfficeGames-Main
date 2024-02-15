@@ -1,5 +1,5 @@
 :root{
-    --main-color: #d3ad7f;
+    --main-color: blueviolet;
     --black: #13131a;
     --bg: #010103;
     --border: .1rem solid rgba(255,255,255,.3);
@@ -15,7 +15,6 @@
     text-transform: capitalize;
     transition: .2s linear;
 }
-
 
 html{
     font-size: 62.5%;
@@ -49,6 +48,7 @@ section{
     margin-top: 10rem;
     min-height: 75vh;
 }
+
 .contact-btn{
     margin-top: 1rem;
     display: inline-block;
@@ -59,9 +59,9 @@ section{
     cursor: pointer;
 }
 
-.btn:hover{
-
-letter-spacing: .2rem;
+.contact-btn:hover{
+    letter-spacing: .2rem;
+    box-shadow: 0 0 10px 5px white;
 }
 
 .contact .row{
@@ -70,16 +70,19 @@ letter-spacing: .2rem;
     flex-wrap: wrap;
     gap:1rem;
 }
+
 .contact .row .map {
     flex:1 1 45rem;
     width: 100%;
     object-fit: cover;
 }
+
 .contact .row form{
     flex:1 1 45rem;
     padding: 5rem 2rem;
     text-align: center;
 }
+
 .contact .row form h3{
     text-transform: uppercase;
     font-size: 3.5rem;
