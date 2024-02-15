@@ -1,16 +1,49 @@
 :root{
-    --bg-color: #fff;
-    --second-bg-color: #c9c4c4;
-    --text-color:#202020;
-    --second-color: #026bfd;
-    --main-color: #026bfd;                
-    --footer-color: #013680;
+    --main-color: #d3ad7f;
+    --black: #13131a;
+    --bg: #010103;
+    --border: .1rem solid rgba(255,255,255,.3);
 }
 
-.hello{
-    width: 100% !important;
-    background-color: var(--main-color);
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    outline: none;
+    border: none;
+    text-decoration: none;
+    text-transform: capitalize;
+    transition: .2s linear;
 }
+
+.heading{
+    text-align: center;
+    color: #fff;
+    text-transform: uppercase;
+    padding-bottom: 3.5rem;
+    font-size: 4rem;
+}
+
+.heading span{
+    color: var(--main-color);
+    text-transform: uppercase;
+}
+
+.btn{
+    margin-top: 1rem;
+    display: inline-block;
+    padding: .9rem 3rem;
+    font-size: 1.7rem;
+    color: #fff;
+    background: var(--main-color);
+    cursor: pointer;
+}
+
+.btn:hover{
+
+letter-spacing: .2rem;
+}
+
 
 .team-section{
     margin-top: 75px;
@@ -35,7 +68,7 @@
 }
 
 .team-cards{
-    width: 85%;
+    width: 100%;
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     justify-content: space-between;
