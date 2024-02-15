@@ -36,7 +36,7 @@
     padding: .9rem 3rem;
     font-size: 1.7rem;
     color: #fff;
-    background: var(--main-color);
+    background: var(--second-color);
     cursor: pointer;
 }
 
@@ -49,9 +49,8 @@
     min-height: 100vh;
     display: flex;
     align-items: center;
-    background:  url(/static/asssets/blackBackgroundWithBlueCircles.jpg);
+    background: url(/static/asssets/blackBackgroundWithBlueCircles.jpg) center;
     background-size: cover;
-    background-position: center;
 }
 
 .home .content{

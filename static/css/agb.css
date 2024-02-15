@@ -1,12 +1,12 @@
-:root{
+:root {
     --main-color: #c8b6ff;
     --second-color: #5638C0FF;
     --black: #13131a;
     --bg: #010103;
-    --border: .1rem solid rgba(255,255,255,.3);
+    --border: .1rem solid rgba(255, 255, 255, .3);
 }
 
-*{
+* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -18,25 +18,22 @@
 }
 
 
-.agb{
-    margin-left: 3rem;
-    margin-right: 3rem;
-    margin-top: 20rem;
-    margin-bottom: 3rem;
+.agb {
+    margin: 20rem 3rem 3rem;
 }
 
-.agb h4{
-    color: var(--main-color);
+.agb h4 {
+    color: var(--second-color);
     font-size: 3rem;
 }
 
-.title-agb h1{
+.title-agb h1 {
     color: var(--main-color);
     font-size: 4rem
 
 }
 
-.agb .agb-content p{
+.agb .agb-content p {
     color: #fff;
     font-size: 1.5rem;
 
