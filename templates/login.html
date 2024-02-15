@@ -4,9 +4,9 @@
 
 {% block content %}
 
-    <body>
+    <body class="login">
     <div class="wrapper">
-        <div class="form-box login">
+        <div class="form-box-login">
             <h2>Login</h2>
             <form action="#">
                 <div class="input-box">
@@ -20,7 +20,12 @@
                     <label>Passwort</label>
                 </div>
                 <div class="remember-forget">
-                    <label></label>
+                    <label><input type="checkbox"> Sich Erinnern</label>
+                    <a href="#">Passwort vergessen?</a>
+                </div>
+                <button type="submit" class="btn-login">Login</button>
+                <div class="login-register">
+                    <p>Haben Sie kein Account? <a href="#" class="register-link">Registrieren</a></p>
                 </div>
             </form>
         </div>
