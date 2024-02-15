@@ -45,7 +45,12 @@ letter-spacing: .2rem;
 }
 
 .review{
-    margin-top: 20rem;
+    margin-top: 10rem;
+    min-height: 100vh;
+}
+
+.review h1{
+    color: var(--main-color);
 }
 .review .box-container{
     display: grid;

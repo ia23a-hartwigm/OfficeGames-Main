@@ -46,7 +46,8 @@ section{
 }
 
 .contact{
-    margin-top: 20rem;
+    margin-top: 10rem;
+    min-height: 75vh;
 }
 .contact-btn{
     margin-top: 1rem;
