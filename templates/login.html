@@ -4,33 +4,86 @@
 
 {% block content %}
 
-  <section class="login">
-    <div class="wrapper">
-        <div class="form-box-login">
-            <h2>Login</h2>
-            <form action="#">
-                <div class="input-box">
-                    <span class="icon"><i class="fa-solid fa-envelope"></i></span>
-                    <input type="email" required>
-                    <label>Email</label>
-                </div>
-                <div class="input-box">
-                    <span class="icon"><i class="fa-solid fa-lock"></i></span>
-                    <input type="password" required>
-                    <label>Passwort</label>
-                </div>
-                <div class="remember-forget">
-                    <label><input type="checkbox"> Sich Erinnern</label>
-                    <a href="#">Passwort vergessen?</a>
-                </div>
-                <button type="submit" class="btn-login">Login</button>
-                <div class="login-register">
-                    <p>Haben Sie kein Account? <a href="#" class="register-link">Registrieren</a></p>
-                </div>
-            </form>
+    <section class="login">
+        <div class="wrapper">
+
+        <span class="icon-close">
+            <i class="fa-solid fa-xmark"></i>
+        </span>
+
+            <div class="form-box-login">
+                <h2>Login</h2>
+                <form action="#">
+                    <div class="input-box">
+                        <span class="icon"><i class="fa-solid fa-envelope"></i></span>
+                        <input type="email" required>
+                        <label>Email</label>
+                    </div>
+                    <div class="input-box">
+                        <span class="icon"><i class="fa-solid fa-lock"></i></span>
+                        <input type="password" required>
+                        <label>Password</label>
+                    </div>
+                    <div class="remember-forget">
+                        <label><input type="checkbox">Remember me</label>
+                        <a href="#">Forgot Password?</a>
+                    </div>
+                    <button type="submit" class="btn-login">Login</button>
+                    <div class="login-register">
+                        <p>Don't have an account? <a href="#" class="register-link">Register</a></p>
+                    </div>
+                </form>
+            </div>
+            <div class="form-box-register">
+                <h2>Registration</h2>
+                <form action="#">
+                    <div class="input-box">
+                        <span class="icon"><i class="fa-solid fa-address-card"></i></span>
+                        <input type="text" required>
+                        <label>First name</label>
+                    </div>
+                    <div class="input-box">
+                        <span class="icon"><i class="fa-solid fa-address-card"></i></span>
+                        <input type="text" required>
+                        <label>Last name</label>
+                    </div>
+                    <div class="input-box">
+                        <span class="icon"><i class="fa-solid fa-road"></i></span>
+                        <input type="text" required>
+                        <label>Street</label>
+                    </div>
+                    <div class="input-box">
+                        <span class="icon"><i class="material-icons" style="font-size: 4rem">123</i></span>
+                        <input type="number" required class="numbers">
+                        <label>Postcode</label>
+                    </div>
+                    <div class="input-box">
+                        <span class="icon"><i class="fa-solid fa-city"></i></span>
+                        <input type="text" required>
+                        <label>City</label>
+                    </div>
+                    <div class="input-box">
+                        <span class="icon"><i class="fa-solid fa-envelope"></i></span>
+                        <input type="email" required>
+                        <label>Email</label>
+                    </div>
+                    <div class="input-box">
+                        <span class="icon"><i class="fa-solid fa-lock"></i></span>
+                        <input type="password" required>
+                        <label>Password</label>
+                    </div>
+                    <div class="remember-forget">
+                        <label><input type="checkbox">I agree to the terms & conditions</label>
+                    </div>
+                    <button type="submit" class="btn-login">Register</button>
+                    <div class="login-register">
+                        <p>Already have an account? <a href="#" class="login-link">Login</a></p>
+                    </div>
+                </form>
+            </div>
         </div>
-    </div>
-  </section>
-    
+    </section>
+
+    <script src="../static/js/login.js"></script>
 
 {% endblock %}

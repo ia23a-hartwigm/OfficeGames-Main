@@ -88,3 +88,21 @@ footer .links a{
 footer .links a:hover{
     background: var(--main-color);
 }
+
+footer .credit{
+    font-size: 2rem;
+    color: #fff;
+    font-weight: lighter;
+    padding: 1.5rem;
+}
+
+footer .credit a{
+    font-size: 2rem;
+    color: #fff;
+    font-weight: lighter;
+    padding: 1.5rem;
+}
+
+footer .credit span{
+    color: var(--main-color);
+}
