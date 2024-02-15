@@ -1,11 +1,12 @@
-:root{
-    --main-color: darkviolet;
+:root {
+    --main-color: #c8b6ff;
+    --second-color: #5638C0FF;
     --black: #13131a;
     --bg: #010103;
-    --border: .1rem solid rgba(255,255,255,.3);
+    --border: .1rem solid rgba(255, 255, 255, .3);
 }
 
-*{
+* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -16,7 +17,7 @@
     transition: .2s linear;
 }
 
-.heading{
+.heading {
     text-align: center;
     color: #fff;
     text-transform: uppercase;
@@ -24,12 +25,12 @@
     font-size: 4rem;
 }
 
-.heading span{
+.heading span {
     color: var(--main-color);
     text-transform: uppercase;
 }
 
-.btn{
+.btn {
     margin-top: 1rem;
     display: inline-block;
     padding: .9rem 3rem;
@@ -39,63 +40,62 @@
     cursor: pointer;
 }
 
-.btn:hover{
-
-letter-spacing: .2rem;
+.btn:hover {
+    letter-spacing: .2rem;
 }
 
-.blogs{
+.blogs {
     margin-top: 10rem;
 }
 
-.blogs .box-container{
+.blogs .box-container {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(60rem, 1fr));
     gap: 1.5rem;
 }
 
-.blogs .box-container .box{
+.blogs .box-container .box {
     border: var(--border);
 }
 
-.blogs .box-container .box .image{
+.blogs .box-container .box .image {
     height: 40rem;
     overflow: hidden;
     width: 100%;
 }
 
-.blogs .box-container .box .image img{
+.blogs .box-container .box .image img {
     height: 100%;
     object-fit: cover;
     width: 100%;
 }
 
-.blogs .box-container .box:hover .image img{
+.blogs .box-container .box:hover .image img {
     transform: scale(1.2);
 }
 
-.blogs .box-container .box .content{
+.blogs .box-container .box .content {
     padding: 2rem;
 }
 
-.blogs .box-container .box .content .title{
+.blogs .box-container .box .content .title {
     font-size: 2.5rem;
     line-height: 1.5;
     color: #fff;
 }
 
-.blogs .box-container .box .content .title:hover{
+.blogs .box-container .box .content .title:hover {
     color: var(--main-color);
 }
 
-.blogs .box-container .box .content span{
+.blogs .box-container .box .content span {
     color: var(--main-color);
     display: block;
     padding-top: 1rem;
     font-size: 2rem;
 }
 
-.blogs .box-container .box .content p{
+.blogs .box-container .box .content p {
     font-size: 1.6rem;
     line-height: 1.8;
     color: #ccc;
