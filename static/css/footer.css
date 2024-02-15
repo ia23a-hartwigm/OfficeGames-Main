@@ -36,7 +36,7 @@
     padding: .9rem 3rem;
     font-size: 1.7rem;
     color: #fff;
-    background: var(--main-color);
+    background: var(--second-color);
     cursor: pointer;
 }
 
@@ -61,13 +61,11 @@ footer .share a{
     line-height: 5rem;
     font-size: 2rem;
     color: #fff;
-    border: var(--border);
     margin: .3rem;
-    border-radius: 50%;
 }
 
 footer .share a:hover{
- background-color: var(--main-color);
+ background-color: var(--second-color);
 }
 
 
@@ -82,12 +80,11 @@ footer .links{
 footer .links a{
     padding: .7rem 2rem;
     color: #fff;
-    border: var(--border);
     font-size: 2rem;
 }
 
 footer .links a:hover{
-    background: var(--main-color);
+    background: var(--second-color);
 }
 
 footer .credit{
@@ -97,11 +94,8 @@ footer .credit{
     padding: 1.5rem;
 }
 
-footer .credit a{
-    font-size: 2rem;
+footer .credit a {
     color: #fff;
-    font-weight: lighter;
-    padding: 1.5rem;
 }
 
 footer .credit span{

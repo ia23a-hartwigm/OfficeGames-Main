@@ -36,7 +36,7 @@
     padding: .9rem 3rem;
     font-size: 1.7rem;
     color: #fff;
-    background: var(--main-color);
+    background: var(--second-color);
     cursor: pointer;
 }
 
@@ -85,7 +85,7 @@
 }
 
 .blogs .box-container .box .content .title:hover {
-    color: var(--main-color);
+    color: var(--second-color);
 }
 
 .blogs .box-container .box .content span {
