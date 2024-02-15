@@ -44,6 +44,9 @@
 letter-spacing: .2rem;
 }
 
+.products{
+    margin-top: 10rem;
+}
 .products .box-container{
    display: grid;
    grid-template-columns: repeat(auto-fit, minmax(50rem, 1fr)); 

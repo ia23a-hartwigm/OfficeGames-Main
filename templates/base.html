@@ -15,6 +15,8 @@
     <link rel="stylesheet" href="/static/css/login.css">
     <link rel="stylesheet" href="/static/css/contact.css">
     <link rel="stylesheet" href="/static/css/blogs.css">
+    <link rel="stylesheet" href="/static/css/footer.css">
+    <link rel="stylesheet" href="/static/css/about.css">
 
 </head>
 
@@ -29,6 +31,7 @@
             <a href="/shop">Shop</a>
             <a href="/review">Reviews</a>
             <a href="/blogs">Blogs</a>
+            <a href="/about">About</a>
             <a href="/contact">Contact</a>
             <a href="/login">Login</a>
             
@@ -60,30 +63,28 @@
     </header>
 
     {% block content %}
-    {% endblock %}
-
-
-    <footer class="footer">
-        <div class="shar">
-            <a href="" class="fab fa-instagram"></a>
-            <a href="" class="fab fa-tiktok"></a>
-        </div>
-
-        <div class="links">
-            <a href="">Home</a>
-            <a href="">Shop</a>
-            <a href="">Reviews</a>
-            <a href="">Blogs</a>
-            <a href="">Contact</a>
-            <a href="">Login</a>
-        </div>
-
-        <div class="credit"></div>
-    </footer>
-
-
+    {% endblock %}   
     
 
 </body>
+<footer class="footer">
+    <div class="share">
+        <a href="" class="fab fa-instagram"></a>
+        <a href="" class="fab fa-tiktok"></a>
+    </div>
+
+    <div class="links">
+        <a href="/">Home</a>
+        <a href="/shop">Shop</a>
+        <a href="/review">Reviews</a>
+        <a href="/blogs">Blogs</a>
+        <a href="/contact">Contact</a>
+        <a href="/login">Login</a>
+    </div>
+
+    <div class="credit">Created by <span>Office Games</span> <a href="/agb">| AGB</a></div>
+</footer>
+
+
 <script src="/static/js/script.js"></script>
 </html>
