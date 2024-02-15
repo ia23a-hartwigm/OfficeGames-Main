@@ -55,7 +55,7 @@
     background-size: cover;
 }
 
-body .wrapper {
+.wrapper {
     position: relative;
     width: 400px;
     height: 440px;

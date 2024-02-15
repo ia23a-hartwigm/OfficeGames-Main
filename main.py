@@ -117,13 +117,13 @@ def shop():
     return render_template("shop.html", product_info=product_info)
 
 
-'''
-@app.route("/faq")
-def faq():
-    app.logger.info("Rendering faq page")
-    return render_template("faq.html")
 
-'''
+@app.route("/blogs")
+def blogs():
+    app.logger.info("Rendering blog page")
+    return render_template("blogs.html")
+
+
 
 
 @app.route("/login")

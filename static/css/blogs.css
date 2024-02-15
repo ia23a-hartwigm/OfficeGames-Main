@@ -50,7 +50,7 @@ letter-spacing: .2rem;
 
 .blogs .box-container{
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(80rem, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(60rem, 1fr));
     gap: 1.5rem;
 }
 
@@ -59,7 +59,7 @@ letter-spacing: .2rem;
 }
 
 .blogs .box-container .box .image{
-    height: 25rem;
+    height: 40rem;
     overflow: hidden;
     width: 100%;
 }
@@ -86,4 +86,18 @@ letter-spacing: .2rem;
 
 .blogs .box-container .box .content .title:hover{
     color: var(--main-color);
+}
+
+.blogs .box-container .box .content span{
+    color: var(--main-color);
+    display: block;
+    padding-top: 1rem;
+    font-size: 2rem;
+}
+
+.blogs .box-container .box .content p{
+    font-size: 1.6rem;
+    line-height: 1.8;
+    color: #ccc;
+    padding: 1rem 0;
 }
