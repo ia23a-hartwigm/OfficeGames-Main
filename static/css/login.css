@@ -38,7 +38,7 @@
     padding: .9rem 3rem;
     font-size: 1.7rem;
     color: #fff;
-    background: var(--main-color);
+    background: var(--second-color);
     cursor: pointer;
 }
 
@@ -52,7 +52,7 @@
     justify-content: center;
     align-items: center;
     min-height: 100vh;
-    background: url("../asssets/cloudsWallpaper.jpg") no-repeat center;
+    background: url("../asssets/playingCardsWallpaper.jpg") no-repeat center;
     background-size: cover;
 }
 
