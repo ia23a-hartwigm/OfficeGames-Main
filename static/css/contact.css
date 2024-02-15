@@ -44,6 +44,10 @@ body{
 section{
     padding: 2rem 7%;
 }
+
+.contact{
+    margin-top: 20rem;
+}
 .contact-btn{
     margin-top: 1rem;
     display: inline-block;

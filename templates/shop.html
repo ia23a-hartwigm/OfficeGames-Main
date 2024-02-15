@@ -27,9 +27,9 @@
                 </div>
 
                 {% if product.is_sale == True %}
-                <div class="price">{{ product.sale }}<span>{{ product.price }}</span></div>
+                <div class="price">CHF {{ product.sale }}<span>CHF {{ product.price }}</span></div>
                 {% else %}
-                <div class="price">{{ product.price }}</div>
+                <div class="price">CHF {{ product.price }}</div>
                 {% endif%}
             </div>
         </div>
