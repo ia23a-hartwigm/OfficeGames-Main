@@ -67,11 +67,52 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    overflow: hidden;
+    transition: height .4s ease;
+}
+
+.wrapper.active {
+    height: 800px; /* registration height */
 }
 
 .wrapper .form-box-login {
     width: 100%;
     padding: 40px;
+    transition: transform .40s ease;
+    transform: translateX(0);
+}
+
+.wrapper.active .form-box-login {
+    transition: none;
+    transform: translateX(-400px);
+}
+
+.wrapper .form-box-register {
+    position: absolute;
+    transition: none;
+    transform: translateX(400px);
+}
+
+.wrapper.active .form-box-register {
+    transition: transform .40s ease;
+    transform: translateX(0);
+}
+
+.wrapper .icon-close {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 45px;
+    height: 45px;
+    background: #2f2f33;
+    font-size: 2em;
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-bottom-left-radius: 20px;
+    cursor: pointer;
+    z-index: 1;
 }
 
 .form-box-login h2 {
@@ -120,7 +161,7 @@
 .input-box .icon {
     position: absolute;
     right: 8px;
-    font-size: 1.5em;
+    font-size: 1em;
     color: #2f2f33;
     line-height: 57px;
 }
@@ -175,4 +216,9 @@
 
 .login-register p a:hover {
     text-decoration: underline;
+}
+
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
 }
