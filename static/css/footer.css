@@ -106,3 +106,19 @@ footer .credit a{
 footer .credit span{
     color: var(--main-color);
 }
+
+footer .share a{
+    height: 5rem;
+    width: 5rem;
+    line-height: 5rem;
+    font-size: 2rem;
+    color: #fff;
+    border: var(--border);
+    margin: .3rem;
+    border-radius: 50%;
+
+}
+
+footer .share a:hover{
+   color: var(--main-color); 
+}
