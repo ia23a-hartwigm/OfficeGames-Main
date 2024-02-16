@@ -148,6 +148,11 @@ def agb():
     app.logger.info("Rendering home page")
     return render_template("agb.html")
 
+@app.route("/infos")
+def infos():
+    app.logger.info("Rendering home page")
+    return render_template("infos.html")
+
 
 @app.route("/review")
 def review():

@@ -55,7 +55,7 @@ section {
     padding: .9rem 3rem;
     font-size: 1.7rem;
     color: #fff;
-    background: var(--second-color);
+    background: var(--button-color);
     cursor: pointer;
 }
 
