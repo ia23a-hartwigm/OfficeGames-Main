@@ -194,7 +194,7 @@ section {
 
 .header .cart-items-container .cart-item .content .price {
     font-size: 1.5rem;
-    color: var(--button-color);
+    color: var(--second-color);
 
 }
 

@@ -104,27 +104,9 @@
     transform: translateX(0);
 }
 
-.wrapper .icon-close {
-    position: absolute;
-    top: 0;
-    right: 0;
-    width: 45px;
-    height: 45px;
-    background: var(--second-color);
-    font-size: 2em;
-    color: #fff;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border-bottom-left-radius: 20px;
-    cursor: pointer;
-    z-index: 1;
-}
-
 .form-box-login h2 {
     font-size: 2em;
     color: var(--main-color);
-    text-align: center;
 }
 
 .input-box {
