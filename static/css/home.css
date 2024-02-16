@@ -49,7 +49,7 @@
     min-height: 100vh;
     display: flex;
     align-items: center;
-    background: url(/static/asssets/blackBackgroundWithBlueCircles.jpg) center;
+    background: url("../asssets/playingCardsWallpaper.jpg") center;
     background-size: cover;
 }
 
