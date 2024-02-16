@@ -47,6 +47,10 @@
     letter-spacing: .2rem;
 }
 
+label{
+    background: none !important;
+}
+
 .login {
     font-size: 1.75em;
     display: flex;
