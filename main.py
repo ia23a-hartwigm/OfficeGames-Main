@@ -93,6 +93,7 @@ users = [
 
 @app.route("/")
 def home():
+    session["user"] = 1 # Only for testing
     app.logger.info("Rendering home page")
     return render_template("home.html")
 
@@ -226,7 +227,6 @@ def login_do():
     # Query to check if the user exists with the provided username and password
     cur.execute("SELECT customersid FROM customers WHERE email = %s AND password = %s", (username, password))
     user = cur.fetchone()
-    print(user)
 
     if user:
         # Credentials matched, set user session
