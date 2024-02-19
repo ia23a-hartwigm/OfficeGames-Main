@@ -4,83 +4,104 @@
 
 {% block content %}
 
-    <section class="login">
-        <div class="wrapper">
+<section class="login">
+    <div class="wrapper">
 
-            <div class="form-box-login">
-                <h2 style="text-align: center">Login</h2>
-                <form action="#">
-                    <div class="input-box">
-                        <span class="icon"><i class="fa-solid fa-envelope"></i></span>
-                        <input type="email" required>
-                        <label>Email</label>
-                    </div>
-                    <div class="input-box">
-                        <span class="icon"><i class="fa-solid fa-lock"></i></span>
-                        <input type="password" required>
-                        <label>Password</label>
-                    </div>
-                    <div class="remember-forget">
-                        <label><input type="checkbox">Remember me</label>
-                        <a href="#">Forgot Password?</a>
-                    </div>
-                    <button type="submit" class="btn-login">Login</button>
-                    <div class="login-register">
-                        <p>Don't have an account? <a href="#" class="register-link">Register</a></p>
-                    </div>
-                </form>
-            </div>
+        <div class="form-box-login">
+            <h2 style="text-align: center">Login</h2>
+            <form action="{{ url_for('login_do') }}" method="post">
+                <div class="input-box">
+                    <span class="icon"><i class="fa-solid fa-envelope"></i></span>
+                    <input type="email" required name="name">
+                    <label>Email</label>
+                </div>
+                <div class="input-box">
+                    <span class="icon"><i class="fa-solid fa-lock"></i></span>
+                    <input type="password" required name="password">
+                    <label>Password</label>
+                </div>
+                <div class="remember-forget">
+                    <label><input type="checkbox">Remember me</label>
+                    <a href="#">Forgot Password?</a>
+                </div>
+                <button type="submit" class="btn-login">Login</button>
 
-            <div class="form-box-register">
-                <h2 style="text-align: center">Registration</h2>
-                <form action="#">
-                    <div class="input-box">
-                        <span class="icon"><i class="fa-solid fa-address-card"></i></span>
-                        <input type="text" required>
-                        <label>First name</label>
-                    </div>
-                    <div class="input-box">
-                        <span class="icon"><i class="fa-solid fa-address-card"></i></span>
-                        <input type="text" required>
-                        <label>Last name</label>
-                    </div>
-                    <div class="input-box">
-                        <span class="icon"><i class="fa-solid fa-road"></i></span>
-                        <input type="text" required>
-                        <label>Street</label>
-                    </div>
-                    <div class="input-box">
-                        <span class="icon"><i class="fa-solid fa-map-location-dot"></i></span>
-                        <input type="number" required class="numbers">
-                        <label>Postcode</label>
-                    </div>
-                    <div class="input-box">
-                        <span class="icon"><i class="fa-solid fa-city"></i></span>
-                        <input type="text" required>
-                        <label>City</label>
-                    </div>
-                    <div class="input-box">
-                        <span class="icon"><i class="fa-solid fa-envelope"></i></span>
-                        <input type="email" required>
-                        <label>Email</label>
-                    </div>
-                    <div class="input-box">
-                        <span class="icon"><i class="fa-solid fa-lock"></i></span>
-                        <input type="password" required>
-                        <label>Password</label>
-                    </div>
-                    <div class="remember-forget">
-                        <label><input type="checkbox">I agree to the terms & conditions</label>
-                    </div>
-                    <button type="submit" class="btn-login">Register</button>
-                    <div class="login-register">
-                        <p>Already have an account? <a href="#" class="login-link">Login</a></p>
-                    </div>
-                </form>
+            </form>
+            <div class="login-register">
+                <p>Don't have an account? <a href="#" class="register-link">Register</a></p>
             </div>
         </div>
-    </section>
 
-    <script src="../static/js/login.js"></script>
+        <div class="form-box-register">
+            <h2 style="text-align: center">Registration</h2>
+            <form action="{{ url_for('login_do') }}" method="post">
+                <div class="input-box">
+                    <span class="icon"><i class="fa-solid fa-address-card"></i></span>
+                    <input type="text" required name="first_name">
+                    <label>First name</label>
+                </div>
+                <div class="input-box">
+                    <span class="icon"><i class="fa-solid fa-address-card"></i></span>
+                    <input type="text" required name="last_name">
+                    <label>Last name</label>
+                </div>
+                <div class="input-box">
+                    <span class="icon"><i class="fa-solid fa-lock"></i></span>
+                    <input type="password" name="company">
+                    <label>Company</label>
+                </div>
+                <div class="input-box">
+                    <span class="icon"><i class="fa-solid fa-road"></i></span>
+                    <input type="text" required name="street">
+                    <label>Street</label>
+                </div>
+                <div class="input-box">
+                    <span class="icon"><i class="fa-solid fa-map-location-dot"></i></span>
+                    <input type="text" required class="numbers" name="plz">
+                    <label>Postcode</label>
+                </div>
+                <div class="input-box">
+                    <span class="icon"><i class="fa-solid fa-city"></i></span>
+                    <input type="text" required name="city">
+                    <label>City</label>
+                </div>
+                <div class="input-box">
+                    <span class="icon"><i class="fa-solid fa-lock"></i></span>
+                    <input type="password" name="country">
+                    <label>Country</label>
+                </div>
+                <div class="input-box">
+                    <span class="icon"><i class="fa-solid fa-envelope"></i></span>
+                    <input type="email" required name="email">
+                    <label>Email</label>
+                </div>
+                <div class="input-box">
+                    <span class="icon"><i class="fa-solid fa-envelope"></i></span>
+                    <input type="email" required name="tel">
+                    <label>Telefone</label>
+                </div>
+                <div class="input-box">
+                    <span class="icon"><i class="fa-solid fa-lock"></i></span>
+                    <input type="password" required name="password">
+                    <label>Password</label>
+                </div>
+                <div class="input-box">
+                    <span class="icon"><i class="fa-solid fa-lock"></i></span>
+                    <input type="password" required name="password2">
+                    <label>reenter Password</label>
+                </div>
+                <div class="remember-forget">
+                    <label><input type="checkbox" name="tos">I agree to the terms & conditions</label>
+                </div>
+                <button type="submit" class="btn-login">Register</button>
+                <div class="login-register">
+                    <p>Already have an account? <a href="#" class="login-link">Login</a></p>
+                </div>
+            </form>
+        </div>
+    </div>
+</section>
+
+<script src="../static/js/login.js"></script>
 
 {% endblock %}

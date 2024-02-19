@@ -59,6 +59,7 @@ label{
     min-height: 100vh;
     background: url("../asssets/purplePlayingCardsWallpaper.jpg") no-repeat center;
     background-size: cover;
+    margin-top: 10rem;
 }
 
 .wrapper {

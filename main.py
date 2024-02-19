@@ -198,6 +198,20 @@ def kasse():
     connection.close()
     return render_template("kasse.html", product_info=product_info)
 
+@app.route("/new_user", methods=["POST"])
+def new_user():
+    if request.method == "POST":
+        username = request.form["name"]
+        password = request.form["password"]
+
+        # Connect to your PostgreSQL database
+        conn = psycopg2.connect(db_config)
+        cur = conn.cursor()
+
+    # Query to check if the user exists with the provided username and password
+    cur.execute("SELECT customersid FROM customers WHERE email = %s AND password = %s", (username, password))
+    user = cur.fetchone()
+    print(user)
 
 @app.route("/login_do", methods=["POST"])
 def login_do():
