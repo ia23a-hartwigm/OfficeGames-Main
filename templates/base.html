@@ -52,24 +52,39 @@
     </div>
 
 
-
-
-    <div class="cart-items-container">
+    <div class="cart-items-container" id="cartItemsContainer">
         {% for warenkorbitem in warenkorb %}
-        <div class="cart-item">
-            <span class="fas fa-trash-can"></span>
-            <img src="/asssets/products/1.png" alt="">
-            <div class="content">
-                <h3>{{ warenkorbitem.productid }}</h3>
-                <div class="price">{{ warenkorbitem.productid }}</div>
+            <div class="cart-item">
+                <span class="fas fa-trash-can"></span>
+                <input type="number" id="quantity" name="quantity" min="1" max="99" class="quant-input">
+                <button class="submitButton">Submit</button>
+                <div class="content">
+                    <h3>{{ warenkorbitem.productid }}</h3>
+                    <div class="price">{{ warenkorbitem.productid }}</div>
+                </div>
             </div>
-        </div>
         {% endfor %}
         <a href="" class="btn">Checkout</a>
+        <script>
+            document.getElementById('cart-btn').addEventListener('click', function () {
+                document.getElementById('cartItemsContainer').style.display = 'block';
+            });
+
+            var lastScrollTop = 0;
+            window.addEventListener('scroll', function () {
+                var cartItemsContainer = document.getElementById('cartItemsContainer');
+                var currentScrollTop = window.pageYOffset || document.documentElement.scrollTop;
+                if (currentScrollTop > lastScrollTop) {
+                    // Benutzer scrollt nach unten
+                    if (cartItemsContainer.style.display === 'block') {
+                        cartItemsContainer.style.display = 'none';
+                    }
+                }
+                lastScrollTop = currentScrollTop;
+            });
+
+        </script>
     </div>
-
-
-
 
 
 </header>

@@ -159,6 +159,7 @@ section {
 
 .header .cart-items-container.active {
     right: 0;
+    position: absolute;
 }
 
 .header .cart-items-container .cart-item {
@@ -169,13 +170,28 @@ section {
     gap: 1.5rem;
 }
 
-.header .cart-items-container .cart-item .fa-trash-can {
+.header .cart-items-container .cart-item .fa-trash-can, .quant-input {
     position: absolute;
     top: 2.5rem;
     right: 1rem;
     font-size: 2rem;
     cursor: pointer;
     color: var(--black);
+}
+.quant-input{
+    border: solid 1px black;
+    top: 5rem;
+    height: 2.5rem;
+}
+.submitButton{
+    top: 9rem;
+    height: 2rem;
+    position: absolute;
+    right: 15px;
+    font-size: 150%;
+}
+.submitButton:hover{
+    background-color: grey;
 }
 
 .header .cart-items-container .cart-item .fa-trash-can:hover {
