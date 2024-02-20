@@ -97,7 +97,7 @@ def home():
     app.logger.info("Rendering home page")
     render_warenkorb()
 
-    return render_template("home.html")
+    return render_template("home.html", warenkorb=render_warenkorb())
 
 
 @app.route("/about")
@@ -107,7 +107,7 @@ def about():
     coworkers_info = get_coworker(cursor)
     cursor.close()
     connection.close()
-    return render_template("about.html", coworkers=coworkers_info)
+    return render_template("about.html", coworkers=coworkers_info, warenkorb=render_warenkorb())
 
 
 @app.route("/shop")
@@ -117,49 +117,49 @@ def shop():
     product_info = get_products(cursor)
     cursor.close()
     connection.close()
-    return render_template("shop.html", product_info=product_info)
+    return render_template("shop.html", product_info=product_info, warenkorb=render_warenkorb())
 
 
 @app.route("/blogs")
 def blogs():
     app.logger.info("Rendering blog page")
-    return render_template("blogs.html")
+    return render_template("blogs.html", warenkorb=render_warenkorb())
 
 
 @app.route("/login")
 def login() -> str:
     app.logger.info("Rendering shop page")
-    return render_template("login.html")
+    return render_template("login.html", warenkorb=render_warenkorb())
 
 
 @app.route("/warenkorb")
 def warenkorb():
     app.logger.info("Rendering warenkorb page")
-    return render_template("warenkorb.html")
+    return render_template("warenkorb.html", warenkorb=render_warenkorb())
 
 
 @app.route("/contact")
 def contact():
     app.logger.info("Rendering contact page")
-    return render_template("contact.html")
+    return render_template("contact.html", warenkorb=render_warenkorb())
 
 
 @app.route("/agb")
 def agb():
     app.logger.info("Rendering home page")
-    return render_template("agb.html")
+    return render_template("agb.html", warenkorb=render_warenkorb())
 
 
 @app.route("/infos")
 def infos():
     app.logger.info("Rendering home page")
-    return render_template("infos.html")
+    return render_template("infos.html", warenkorb=render_warenkorb())
 
 
 @app.route("/review")
 def review():
     app.logger.info("Rendering home page")
-    return render_template("review.html")
+    return render_template("review.html", warenkorb=render_warenkorb())
 
 
 @app.route("/q")
@@ -194,7 +194,7 @@ def kasse_fillin(cursor):
 
 @app.route("/kasse")
 def kasse():
-    return render_template("kasse.html")
+    return render_template("kasse.html", warenkorb=render_warenkorb())
     '''    connection = connect_to_database()
     cursor = create_cursor(connection)
     
@@ -253,7 +253,7 @@ def render_warenkorb():
         connection = connect_to_database()
         cursor = create_cursor(connection)
 
-        keys = ["warenkorbId", "productId", "customerId", "quant"]
+        keys = ["warenkorbid", "productid", "customerid", "quant"]
 
         # Query to fetch data from the coworker table
         query = "SELECT warenkorbId, productId, customerId, quant FROM warenkorb WHERE customerId = %s"

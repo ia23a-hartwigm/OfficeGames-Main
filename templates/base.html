@@ -55,22 +55,16 @@
 
 
     <div class="cart-items-container">
+        {% for warenkorbitem in warenkorb %}
         <div class="cart-item">
             <span class="fas fa-times"></span>
             <img src="/asssets/products/1.png" alt="">
             <div class="content">
-                <h3>cart item 01</h3>
-                <div class="price">20.00 CHF</div>
+                <h3>{{ warenkorbitem.productid }}</h3>
+                <div class="price">{{ warenkorbitem.productid }}</div>
             </div>
         </div>
-        <div class="cart-item">
-            <span class="fas fa-times"></span>
-            <img src="/asssets/products/1.png" alt="">
-            <div class="content">
-                <h3>cart item 01</h3>
-                <div class="price">20.00 CHF</div>
-            </div>
-        </div>
+        {% endfor %}
         <a href="" class="btn">Checkout</a>
     </div>
 
