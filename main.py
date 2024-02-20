@@ -256,8 +256,8 @@ def render_warenkorb():
         keys = ["warenkorbId", "productId", "customerId", "quant"]
 
         # Query to fetch data from the coworker table
-        query = ("SELECT (warenkorbId, productId, customerId, quant) FROM warenkorb WHERE customerId = %s")
-        cursor.execute(query, int(session.get("user")))
+        query = "SELECT warenkorbId, productId, customerId, quant FROM warenkorb WHERE customerId = %s"
+        cursor.execute(query, (session.get("user"),))
 
         # Fetch all rows from the query result
         results = cursor.fetchall()
