@@ -31,23 +31,22 @@
                 <p>Don't have an account? <a href="#" class="register-link">Register</a></p>
             </div>
         </div>
-
         <div class="form-box-register">
             <h2 style="text-align: center">Registration</h2>
             <form action="{{ url_for('login_do') }}" method="post">
                 <div class="input-box">
-                    <span class="icon"><i class="fa-solid fa-address-card"></i></span>
+                    <span class="icon"><i class="fa-solid fa-person"></i></span>
                     <input type="text" required name="first_name">
                     <label>First name</label>
                 </div>
                 <div class="input-box">
-                    <span class="icon"><i class="fa-solid fa-address-card"></i></span>
+                    <span class="icon"><i class="fa-solid fa-person"></i></span>
                     <input type="text" required name="last_name">
                     <label>Last name</label>
                 </div>
                 <div class="input-box">
-                    <span class="icon"><i class="fa-solid fa-lock"></i></span>
-                    <input type="password" name="company">
+                    <span class="icon"><i class="fa-solid fa-building"></i></span>
+                    <input type="text" required name="company">
                     <label>Company</label>
                 </div>
                 <div class="input-box">
@@ -56,7 +55,7 @@
                     <label>Street</label>
                 </div>
                 <div class="input-box">
-                    <span class="icon"><i class="fa-solid fa-map-location-dot"></i></span>
+                    <span class="icon"><i class="fa-solid fa-location-dot"></i></span>
                     <input type="text" required class="numbers" name="plz">
                     <label>Postcode</label>
                 </div>
@@ -66,8 +65,8 @@
                     <label>City</label>
                 </div>
                 <div class="input-box">
-                    <span class="icon"><i class="fa-solid fa-lock"></i></span>
-                    <input type="password" name="country">
+                    <span class="icon"><i class="fa-solid fa-globe"></i></span>
+                    <input type="text" required name="country">
                     <label>Country</label>
                 </div>
                 <div class="input-box">
@@ -76,7 +75,7 @@
                     <label>Email</label>
                 </div>
                 <div class="input-box">
-                    <span class="icon"><i class="fa-solid fa-envelope"></i></span>
+                    <span class="icon"><i class="fa-solid fa-phone"></i></span>
                     <input type="email" required name="tel">
                     <label>Telefone</label>
                 </div>

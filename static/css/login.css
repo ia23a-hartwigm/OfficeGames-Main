@@ -57,7 +57,7 @@ label{
     justify-content: center;
     align-items: center;
     min-height: 100vh;
-    background: url("../asssets/purplePlayingCardsWallpaper.jpg") no-repeat center;
+    background: url(/static/asssets/blackBackgroundWithBlueCircles.jpg) no-repeat center;
     background-size: cover;
     margin-top: 10rem;
 }
@@ -79,7 +79,7 @@ label{
 }
 
 .wrapper.active {
-    height: 800px; /* registration height */
+    height: 1200px; /* registration height */
 }
 
 .wrapper .form-box-login {
@@ -97,17 +97,17 @@ label{
 .wrapper .form-box-register {
     padding-top: 45px;
     position: absolute;
-    transition: none;
-    transform: translateX(400px);
-}
-
-.wrapper .form-box-register h2{
-    color: var(--main-color);
+    transition: transform .40s ease;
+    transform: translateY(100%);
 }
 
 .wrapper.active .form-box-register {
     transition: transform .40s ease;
-    transform: translateX(0);
+    transform: translateY(0);
+}
+
+.wrapper .form-box-register h2{
+    color: var(--main-color);
 }
 
 .form-box-login h2 {
@@ -142,7 +142,7 @@ label{
 
 .input-box input {
     width: 100%;
-    height: 100%;
+    height: 150%;
     background: transparent;
     border: none;
     outline: none;
