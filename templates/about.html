@@ -4,33 +4,26 @@
 
 {% block content %}
 
-
-    <section class="about">
-        <h1 class="heading"><span>Our</span> Team</h1>
-        <section class="team-section">
-            <div class="team-title">
-                <div class="team-cards">
-                    {% for coworker in coworkers %}
-                        <div class="team-card">
-                            <div class="team-image">
-                                <img src="{{ url_for('static', filename='/asssets/coworker/' ~ coworker.coworkerid ~ '.jpg') }}"
-                                     alt="{{ coworker.first_name }} {{ coworker.last_name }}">
-                            </div>
-                            <div class="team-detail">
-                                <h3>{{ coworker.first_name }} {{ coworker.last_name }}</h3>
-                                <p>{{ coworker.coworker_role }}</p>
-                            </div>
-
+<section class="about">
+    <h1 class="heading"><span>Our</span> Team</h1>
+    <section class="team-section">
+        <div class="team-title">
+            <div class="team-cards">
+                {% for coworker in coworkers %}
+                    <div class="team-card">
+                        <div class="team-image">
+                            <img src="{{ url_for('static', filename='/asssets/coworker/' ~ coworker.coworkerid ~ '.jpg') }}"
+                                 alt="{{ coworker.first_name }} {{ coworker.last_name }}">
                         </div>
-                    {% endfor %}
-                </div>
+                        <div class="team-detail">
+                            <h3>{{ coworker.first_name }} {{ coworker.last_name }}</h3>
+                            <p>{{ coworker.coworker_role }}</p>
+                        </div>
+                    </div>
+                {% endfor %}
             </div>
-            </div>
-            </div>
-        </section>
-
-
+        </div>
     </section>
-
+</section>
 
 {% endblock %}

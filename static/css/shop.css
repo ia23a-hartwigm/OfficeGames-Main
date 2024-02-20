@@ -16,6 +16,9 @@
     text-transform: capitalize;
     transition: .2s linear;
 }
+body{
+    background-image: url("/static/asssets/BackgroundimagePurpleBlack.jpg");
+}
 
 .heading{
     text-align: center;

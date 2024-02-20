@@ -169,16 +169,16 @@ section {
     gap: 1.5rem;
 }
 
-.header .cart-items-container .cart-item .fa-times {
+.header .cart-items-container .cart-item .fa-trash-can {
     position: absolute;
-    top: 1rem;
+    top: 2.5rem;
     right: 1rem;
     font-size: 2rem;
     cursor: pointer;
     color: var(--black);
 }
 
-.header .cart-items-container .cart-item .fa-times:hover {
+.header .cart-items-container .cart-item .fa-trash-can:hover {
     color: var(--main-color);
 }
 
