@@ -80,17 +80,18 @@
     text-align: center;
     transition: all .45s ease;
     background-image: url("/static/asssets/BackgroundimagePurpleBlack.jpg");
-    font-size: 300%;
+    width: 300px; /* Feste Breite für alle Karten */
+    height: 300px; /* Feste Höhe für alle Karten */
 }
 
 .team-card:first-child {
-    grid-column: 1 / span 2;
-    grid-row: 1;
-    width: 75%;
-    height: 80%;
+    grid-column: 1 / span 2; /* Die erste Karte soll über zwei Spalten gehen */
+    grid-row: 1; /* Die erste Karte soll in der ersten Zeile sein */
+    width: 75%; /* Breite der ersten Karte */
+    height: 80%; /* Höhe der ersten Karte */
     position: relative;
-    margin-left: 12.5%;
-    margin-top: 7.5%;
+    margin-left: 12.5%; /* Horizontaler Abstand der ersten Karte */
+    margin-top: 7.5%; /* Vertikaler Abstand der ersten Karte */
 }
 
 .team-card:hover {
