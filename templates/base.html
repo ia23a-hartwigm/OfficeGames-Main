@@ -60,12 +60,8 @@
             <span class="fas fa-trash-can"></span>
             <img src="/asssets/products/1.png" alt="">
             <div class="content">
-                <h3 >{{ warenkorbitem.name_product }}</h3>
-                {% if warenkorbitem.is_sale == True %}
-                <div class="price">{{ warenkorbitem.sale }}</div>
-                {% else %}
-                <div class="price">{{ warenkorbitem.price }}</div>
-                {% endif%}
+                <h3>{{ warenkorbitem.productid }}</h3>
+                <div class="price">{{ warenkorbitem.productid }}</div>
             </div>
         </div>
         {% endfor %}
