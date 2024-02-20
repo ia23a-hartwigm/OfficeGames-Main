@@ -93,10 +93,9 @@ users = [
 
 @app.route("/")
 def home():
-    session["user"] = 1  # Only for testing
     app.logger.info("Rendering home page")
     render_warenkorb()
-
+    session["user"] = 1
     return render_template("home.html", warenkorb=render_warenkorb())
 
 
@@ -221,6 +220,52 @@ def new_user():
     print(user)
 
 
+@app.route('/warenkorb/add/<id>', methods=['GET'])
+def productpage(id):
+    cursor = None
+    conn = None
+    try:
+        # Since `id` is already an argument, you don't need to fetch it from request.args
+        productId = int(id)
+        customerId = session.get("user")
+        quant = 1
+        if customerId is None:
+            raise ValueError("Customer ID is not set in the session.")
+
+        conn = connect_to_database()
+        cursor = conn.cursor()
+        max_id = get_max_id()
+        query = "INSERT INTO warenkorb (warenkorbid, productid, customerid, quant) VALUES (%s, %s, %s, %s)"
+        cursor.execute(query, (max_id, productId, customerId, quant))
+        conn.commit()
+    except Exception as e:
+        print(f"An error occurred: {e}")
+        # Provide more informative error handling here if necessary
+        return "Error processing your request", 500
+    finally:
+        if cursor:
+            cursor.close()
+        if conn:
+            conn.close()
+    return redirect(url_for("shop"))
+
+
+def get_max_id():
+    conn = connect_to_database()
+    cursor = conn.cursor()
+
+    query = ("SELECT warenkorbid FROM warenkorb WHERE warenkorbid = (SELECT MAX(warenkorbid) FROM warenkorb)")
+    cursor.execute(query)
+    max_id = cursor.fetchall()
+    max_id = max_id[0]
+    max_id = max_id[0]
+    max_id += 1
+    print(max_id)
+    conn.close()
+    cursor.close()
+    return max_id
+
+
 @app.route("/login_do", methods=["POST"])
 def login_do():
     if request.method == "POST":
@@ -261,7 +306,6 @@ def render_warenkorb():
 
         # Fetch all rows from the query result
         results = cursor.fetchall()
-
 
         # Check if there are any results
         if results:
