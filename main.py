@@ -113,11 +113,11 @@ def about():
 def shop():
     # Your list of dictionaries
     warenkorb_items = [
-        {'warenkorbid': 7, 'productid': 5, 'customerid': 3, 'quant': 1},
-        {'warenkorbid': 8, 'productid': 5, 'customerid': 3, 'quant': 1},
-        {'warenkorbid': 9, 'productid': 1, 'customerid': 3, 'quant': 1},
-        {'warenkorbid': 10, 'productid': 1, 'customerid': 3, 'quant': 1},
-        {'warenkorbid': 11, 'productid': 2, 'customerid': 3, 'quant': 1}
+        {'productid': 5, 'quant': 1},
+        {'productid': 5, 'quant': 1},
+        {'productid': 1, 'quant': 1},
+        {'productid': 1, 'quant': 1},
+        {'productid': 2, 'quant': 1}
     ]
     session["warenkorb"] = warenkorb_items
     connection = connect_to_database()
@@ -315,6 +315,7 @@ def render_warenkorb():
 
         # Fetch all rows from the query result
         results = cursor.fetchall()
+        print(results)
         results = [x[0] for x in results]
 
         # Define a list to store the dictionaries
@@ -332,9 +333,20 @@ def render_warenkorb():
             return None
     else:
         warenkorb = session.get("warenkorb")
-        if warenkorb:
-            print(warenkorb)
-            return warenkorb
+        print(warenkorb)
+        warenkorb = [x[0] for x in warenkorb]
+        print(warenkorb)
+        # Define a list to store the dictionaries
+        all_products = []
+
+        for warenkorbitem in warenkorb:
+            items = get_product_info_warenkorb(warenkorbitem)
+            all_products.extend(items)
+
+        # Check if there are any results
+        if all_products:
+            print(all_products)
+            return all_products
         else:
             return None
 
