@@ -309,13 +309,12 @@ def render_warenkorb():
 
         keys = ["productid"]
 
-        # Query to fetch data from the coworker table
-        query = "SELECT  productId FROM warenkorb WHERE customerId = %s"
+        # Query to fetch data from the warenkorb table
+        query = "SELECT productId FROM warenkorb WHERE customerId = %s"
         cursor.execute(query, (session.get("user"),))
 
         # Fetch all rows from the query result
         results = cursor.fetchall()
-        print(results)
         results = [x[0] for x in results]
 
         # Define a list to store the dictionaries
@@ -325,7 +324,9 @@ def render_warenkorb():
             items = get_product_info_warenkorb(result)
             all_products.extend(items)
 
-        # Check if there are any results
+        cursor.close()
+        connection.close()
+
         if all_products:
             print(all_products)
             return all_products
@@ -333,22 +334,22 @@ def render_warenkorb():
             return None
     else:
         warenkorb = session.get("warenkorb")
-        print(warenkorb)
-        warenkorb = [x[0] for x in warenkorb]
-        print(warenkorb)
+        # Assume warenkorb is a list of dictionaries with key 'productid'
+        product_ids = [item['productid'] for item in warenkorb]  # Corrected line
+
         # Define a list to store the dictionaries
         all_products = []
 
-        for warenkorbitem in warenkorb:
-            items = get_product_info_warenkorb(warenkorbitem)
+        for productid in product_ids:
+            items = get_product_info_warenkorb(productid)
             all_products.extend(items)
 
-        # Check if there are any results
         if all_products:
             print(all_products)
             return all_products
         else:
             return None
+
 
 
 def get_product_info_warenkorb(productid):
