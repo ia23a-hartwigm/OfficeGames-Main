@@ -96,7 +96,6 @@ users = [
 @app.route("/")
 def home():
     app.logger.info("Rendering home page")
-    render_warenkorb()
     return render_template("home.html", warenkorb=render_warenkorb())
 
 
@@ -112,6 +111,8 @@ def about():
 
 @app.route("/shop")
 def shop():
+
+    session["warenkorb"] = warenkorb_items
     connection = connect_to_database()
     cursor = create_cursor(connection)
     product_info = get_products(cursor)
@@ -233,12 +234,13 @@ def productpage(id):
         if customerId is None:
             raise ValueError("Customer ID is not set in the session.")
 
-        conn = connect_to_database()
-        cursor = conn.cursor()
-        max_id = get_max_id()
-        query = "INSERT INTO warenkorb (warenkorbid, productid, customerid, quant) VALUES (%s, %s, %s, %s)"
-        cursor.execute(query, (max_id, productId, customerId, quant))
-        conn.commit()
+        else:
+            conn = connect_to_database()
+            cursor = conn.cursor()
+            max_id = get_max_id()
+            query = "INSERT INTO warenkorb (warenkorbid, productid, customerid, quant) VALUES (%s, %s, %s, %s)"
+            cursor.execute(query, (max_id, productId, customerId, quant))
+            conn.commit()
     except Exception as e:
         print(f"An error occurred: {e}")
         # Provide more informative error handling here if necessary
@@ -320,6 +322,14 @@ def render_warenkorb():
             return all_products
         else:
             return None
+    else:
+        warenkorb = session.get("warenkorb")
+        if warenkorb:
+            print(warenkorb)
+            return warenkorb
+        else:
+            return None
+
 
 def get_product_info_warenkorb(productid):
     connection = connect_to_database()
