@@ -326,6 +326,7 @@ def render_warenkorb():
 
         # Check if there are any results
         if all_products:
+            print(all_products)
             return all_products
         else:
             return None
@@ -359,7 +360,11 @@ def get_product_info_warenkorb(productid):
     else:
         return None
 
-
+@app.route("/logout")
+def logout():
+    if session.get("user"):
+        session.pop("user")
+    return redirect("/")
 
 '''
 # Route to handle form submission
