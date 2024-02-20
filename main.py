@@ -1,4 +1,6 @@
 # Wir importieren zuerst das Flask-Objekt aus dem Package
+from operator import itemgetter
+
 import psycopg2 as psycopg2
 from flask import Flask, request, render_template, url_for, redirect, session, flash, jsonify
 from flask_session import Session
@@ -95,7 +97,6 @@ users = [
 def home():
     app.logger.info("Rendering home page")
     render_warenkorb()
-    session["user"] = 1
     return render_template("home.html", warenkorb=render_warenkorb())
 
 
@@ -292,29 +293,55 @@ def login_do():
         conn.close()
         return "wrong"
 
-
 def render_warenkorb():
     if session.get("user"):
         connection = connect_to_database()
         cursor = create_cursor(connection)
 
-        keys = ["warenkorbid", "productid", "customerid", "quant"]
+        keys = ["productid"]
 
         # Query to fetch data from the coworker table
-        query = "SELECT warenkorbId, productId, customerId, quant FROM warenkorb WHERE customerId = %s"
+        query = "SELECT  productId FROM warenkorb WHERE customerId = %s"
         cursor.execute(query, (session.get("user"),))
 
         # Fetch all rows from the query result
         results = cursor.fetchall()
+        results = [x[0] for x in results]
+
+        # Define a list to store the dictionaries
+        all_products = []
+
+        for result in results:
+            items = get_product_info_warenkorb(result)
+            all_products.extend(items)
 
         # Check if there are any results
-        if results:
-            # Convert the list of tuples into a list of dictionaries
-            list_of_dicts = [dict(zip(keys, row)) for row in results]
-            print(list_of_dicts)
-            return list_of_dicts
+        if all_products:
+            return all_products
         else:
             return None
+
+def get_product_info_warenkorb(productid):
+    connection = connect_to_database()
+    cursor = create_cursor(connection)
+
+    keys = ["name_product", "price", "is_sale", "sale"]
+
+    # Query to fetch data from the coworker table
+    query = "SELECT  name_product, price, is_sale, sale FROM product WHERE productid = %s"
+    cursor.execute(query, (str(productid),))
+
+    # Fetch all rows from the query result
+    results = cursor.fetchall()
+
+    # Check if there are any results
+    if results:
+        # Convert the list of tuples into a list of dictionaries
+        list_of_dicts = [dict(zip(keys, row)) for row in results]
+        return list_of_dicts
+    else:
+        return None
+
 
 
 '''
