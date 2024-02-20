@@ -93,8 +93,10 @@ users = [
 
 @app.route("/")
 def home():
-    session["user"] = 1 # Only for testing
+    session["user"] = 1  # Only for testing
     app.logger.info("Rendering home page")
+    render_warenkorb()
+
     return render_template("home.html")
 
 
@@ -118,13 +120,10 @@ def shop():
     return render_template("shop.html", product_info=product_info)
 
 
-
 @app.route("/blogs")
 def blogs():
     app.logger.info("Rendering blog page")
     return render_template("blogs.html")
-
-
 
 
 @app.route("/login")
@@ -138,6 +137,7 @@ def warenkorb():
     app.logger.info("Rendering warenkorb page")
     return render_template("warenkorb.html")
 
+
 @app.route("/contact")
 def contact():
     app.logger.info("Rendering contact page")
@@ -148,6 +148,7 @@ def contact():
 def agb():
     app.logger.info("Rendering home page")
     return render_template("agb.html")
+
 
 @app.route("/infos")
 def infos():
@@ -175,7 +176,8 @@ def kasse_fillin(cursor):
     keys = ["first_name", "last_name", "company_name", "country", "street", "plz", "city", "tel", "email"]
 
     # Query to fetch data from the coworker table
-    query = ("SELECT (first_name, last_name, company_name, country, street, plz, city, tel, email) FROM customers WHERE customerid = %s")
+    query = (
+        "SELECT (first_name, last_name, company_name, country, street, plz, city, tel, email) FROM customers WHERE customerid = %s")
     cursor.execute(query, session.get("user"))
 
     # Fetch all rows from the query result
@@ -192,12 +194,16 @@ def kasse_fillin(cursor):
 
 @app.route("/kasse")
 def kasse():
-    connection = connect_to_database()
+    return render_template("kasse.html")
+    '''    connection = connect_to_database()
     cursor = create_cursor(connection)
+    
     product_info = kasse_fillin(cursor)
+    
     cursor.close()
     connection.close()
-    return render_template("kasse.html", product_info=product_info)
+    , product_info=product_info'''
+
 
 @app.route("/new_user", methods=["POST"])
 def new_user():
@@ -213,6 +219,7 @@ def new_user():
     cur.execute("SELECT customersid FROM customers WHERE email = %s AND password = %s", (username, password))
     user = cur.fetchone()
     print(user)
+
 
 @app.route("/login_do", methods=["POST"])
 def login_do():
@@ -239,6 +246,31 @@ def login_do():
         cur.close()
         conn.close()
         return "wrong"
+
+
+def render_warenkorb():
+    if session.get("user"):
+        connection = connect_to_database()
+        cursor = create_cursor(connection)
+
+        keys = ["warenkorbId", "productId", "customerId", "quant"]
+
+        # Query to fetch data from the coworker table
+        query = ("SELECT (warenkorbId, productId, customerId, quant) FROM warenkorb WHERE customerId = %s")
+        cursor.execute(query, int(session.get("user")))
+
+        # Fetch all rows from the query result
+        results = cursor.fetchall()
+
+
+        # Check if there are any results
+        if results:
+            # Convert the list of tuples into a list of dictionaries
+            list_of_dicts = [dict(zip(keys, row)) for row in results]
+            print(list_of_dicts)
+            return list_of_dicts
+        else:
+            return None
 
 
 '''

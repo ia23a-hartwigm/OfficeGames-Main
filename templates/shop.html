@@ -12,8 +12,10 @@
                 <a href="" class="fas fa-shopping-cart"></a>
                 <a href="/infos" class="fas fa-eye"></a>
             </div>
+
             <div class="image">
-                <img src="{{ url_for('static', filename='asssets/products/' ~ product.productid ~ '.png') }}" alt="{{ product.name_product }}">            </div>
+                <img src="{{ url_for('static', filename='asssets/products/' ~ product.productid ~ '.png') }}"
+                     alt="{{ product.name_product }}"></div>
             <div class="content">
                 <h3>{{ product.name_product }}</h3>
                 <div class="stars">
