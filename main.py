@@ -111,7 +111,14 @@ def about():
 
 @app.route("/shop")
 def shop():
-
+    # Your list of dictionaries
+    warenkorb_items = [
+        {'warenkorbid': 7, 'productid': 5, 'customerid': 3, 'quant': 1},
+        {'warenkorbid': 8, 'productid': 5, 'customerid': 3, 'quant': 1},
+        {'warenkorbid': 9, 'productid': 1, 'customerid': 3, 'quant': 1},
+        {'warenkorbid': 10, 'productid': 1, 'customerid': 3, 'quant': 1},
+        {'warenkorbid': 11, 'productid': 2, 'customerid': 3, 'quant': 1}
+    ]
     session["warenkorb"] = warenkorb_items
     connection = connect_to_database()
     cursor = create_cursor(connection)
