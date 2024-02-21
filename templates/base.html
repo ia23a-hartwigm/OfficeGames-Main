@@ -53,41 +53,48 @@
 
 
     <div class="cart-items-container">
+        {% if session.get("warenkorb") %}
         {% for warenkorbitem in warenkorb %}
-            <div class="cart-item">
-                <span class="fas fa-trash-can"></span>
-                <input type="number" id="quantity" name="quantity" min="1" max="99" class="quant-input" class="scroll-container">
-                <button class="submitButton">Submit</button>
-                <script>
-                    document.getElementById('cart-btn').addEventListener('click', function () {
-                        document.getElementById('cartItemsContainer').style.display = 'block';
-                    });
+        <div class="cart-item">
+            <span class="fas fa-trash-can"></span>
+            <input type="number" id="quantity" name="quantity" min="1" max="99" class="quant-input"
+                   class="scroll-container">
+            <button class="submitButton">Submit</button>
+            <script>
+                document.getElementById('cart-btn').addEventListener('click', function () {
+                    document.getElementById('cartItemsContainer').style.display = 'block';
+                });
 
-                    var lastScrollTop = 0;
-                    window.addEventListener('scroll', function () {
-                        var cartItemsContainer = document.getElementById('cartItemsContainer');
-                        var currentScrollTop = window.pageYOffset || document.documentElement.scrollTop;
-                        if (currentScrollTop > lastScrollTop) {
-                            // Benutzer scrollt nach unten
-                            if (cartItemsContainer.style.display === 'block') {
-                                cartItemsContainer.style.display = 'none';
-                            }
+                var lastScrollTop = 0;
+                window.addEventListener('scroll', function () {
+                    var cartItemsContainer = document.getElementById('cartItemsContainer');
+                    var currentScrollTop = window.pageYOffset || document.documentElement.scrollTop;
+                    if (currentScrollTop > lastScrollTop) {
+                        // Benutzer scrollt nach unten
+                        if (cartItemsContainer.style.display === 'block') {
+                            cartItemsContainer.style.display = 'none';
                         }
-                        lastScrollTop = currentScrollTop;
-                    });
+                    }
+                    lastScrollTop = currentScrollTop;
+                });
 
-                </script>
-                <img src="/asssets/products/1.png" alt="">
-                <div class="content">
-                    <h3>{{ warenkorbitem.name_product }}</h3>
-                    {% if warenkorbitem.is_sale == True %}
-                        <div class="price">{{ warenkorbitem.sale }}</div>
-                    {% else %}
-                        <div class="price">{{ warenkorbitem.price }}</div>
-                    {% endif %}
-                </div>
+            </script>
+            <img src="/asssets/products/1.png" alt="">
+            <div class="content">
+                <h3>{{ warenkorbitem.name_product }}</h3>
+                {% if warenkorbitem.is_sale == True %}
+                <div class="price">{{ warenkorbitem.sale }}</div>
+                {% else %}
+                <div class="price">{{ warenkorbitem.price }}</div>
+                {% endif %}
             </div>
+        </div>
         {% endfor %}
+        {% else %}
+        <div class="content">
+
+            <h3 style="color: #c8b6ff">Dein Warenkorb ist leider noch leer.</h3></div>
+        {% endif %}
         <a href="" class="btn">Checkout</a>
     </div>
 

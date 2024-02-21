@@ -259,30 +259,31 @@ def productpage(id):
                 conn.close()
         return redirect(url_for("shop"))
     else:
-        try:
-            productId = int(id)
-            quant = 1  # Assuming you always add one quantity for simplicity
+        if 'warenkorb' not in session:
+            session['warenkorb'] = []
 
-            # Initialize 'warenkorb' in session if it doesn't exist
-            if 'warenkorb' not in session:
-                session['warenkorb'] = []
+            try:
+                productId = int(id)
+                quant = 1  # Assuming you always add one quantity for simplicity
 
-            # Create a new product item
-            new_product = {'productid': productId, 'quant': quant}
+                # Initialize 'warenkorb' in session if it doesn't exist
 
-            # Retrieve the current 'warenkorb', add the new item, then reassign it back to the session
-            current_warenkorb = session.get('warenkorb')
-            current_warenkorb.append(new_product)
-            session['warenkorb'] = current_warenkorb  # Reassign to ensure Flask detects the change
+                # Create a new product item
+                new_product = {'productid': productId, 'quant': quant}
 
-            # Mark the session as modified (should be redundant but can help in certain Flask versions or setups)
-            session.modified = True
+                # Retrieve the current 'warenkorb', add the new item, then reassign it back to the session
+                current_warenkorb = session.get('warenkorb')
+                current_warenkorb.append(new_product)
+                session['warenkorb'] = current_warenkorb  # Reassign to ensure Flask detects the change
 
-        except Exception as e:
-            print(f"An error occurred: {e}")
-            return "Error processing your request", 500
+                # Mark the session as modified (should be redundant but can help in certain Flask versions or setups)
+                session.modified = True
 
-        return redirect(url_for("shop"))
+            except Exception as e:
+                print(f"An error occurred: {e}")
+                return "Error processing your request", 500
+
+            return redirect(url_for("shop"))
 
 def get_max_id():
     conn = connect_to_database()
@@ -327,51 +328,52 @@ def login_do():
 
 
 def render_warenkorb():
-    if session.get("user"):
-        connection = connect_to_database()
-        cursor = create_cursor(connection)
+    if 'warenkorb' in session:
+        if session.get("user"):
+            connection = connect_to_database()
+            cursor = create_cursor(connection)
 
-        keys = ["productid"]
+            keys = ["productid"]
 
-        # Query to fetch data from the warenkorb table
-        query = "SELECT productId FROM warenkorb WHERE customerId = %s"
-        cursor.execute(query, (session.get("user"),))
+            # Query to fetch data from the warenkorb table
+            query = "SELECT productId FROM warenkorb WHERE customerId = %s"
+            cursor.execute(query, (session.get("user"),))
 
-        # Fetch all rows from the query result
-        results = cursor.fetchall()
-        results = [x[0] for x in results]
+            # Fetch all rows from the query result
+            results = cursor.fetchall()
+            results = [x[0] for x in results]
 
-        # Define a list to store the dictionaries
-        all_products = []
+            # Define a list to store the dictionaries
+            all_products = []
 
-        for result in results:
-            items = get_product_info_warenkorb(result)
-            all_products.extend(items)
+            for result in results:
+                items = get_product_info_warenkorb(result)
+                all_products.extend(items)
 
-        cursor.close()
-        connection.close()
+            cursor.close()
+            connection.close()
 
-        if all_products:
-            return all_products
+            if all_products:
+                return all_products
+            else:
+                return None
         else:
-            return None
-    else:
-        warenkorb = session.get("warenkorb")
-        # Assume warenkorb is a list of dictionaries with key 'productid'
-        product_ids = [item['productid'] for item in warenkorb]  # Corrected line
-        print(product_ids)
-        # Define a list to store the dictionaries
-        all_products = []
+            warenkorb = session.get("warenkorb")
+            # Assume warenkorb is a list of dictionaries with key 'productid'
+            product_ids = [item['productid'] for item in warenkorb]  # Corrected line
+            print(product_ids)
+            # Define a list to store the dictionaries
+            all_products = []
 
-        for productid in product_ids:
-            items = get_product_info_warenkorb(productid)
-            all_products.extend(items)
+            for productid in product_ids:
+                items = get_product_info_warenkorb(productid)
+                all_products.extend(items)
 
-        if all_products:
-            print(all_products)
-            return all_products
-        else:
-            return None
+            if all_products:
+                print(all_products)
+                return all_products
+            else:
+                return None
 
 
 def get_product_info_warenkorb(productid):
