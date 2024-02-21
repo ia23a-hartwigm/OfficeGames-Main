@@ -194,6 +194,10 @@ label{
     color: #fff;
     font-weight: 500;
 }
+.btn-login:hover{
+    letter-spacing: .2rem;
+    box-shadow: 0 0 10px 5px white;
+}
 
 .login-register {
     font-size: .9em;
