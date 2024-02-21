@@ -119,7 +119,6 @@ def shop():
         {'productid': 1, 'quant': 1},
         {'productid': 2, 'quant': 1}
     ]
-    session["warenkorb"] = warenkorb_items
     connection = connect_to_database()
     cursor = create_cursor(connection)
     product_info = get_products(cursor)
@@ -231,34 +230,59 @@ def new_user():
 
 @app.route('/warenkorb/add/<id>', methods=['GET'])
 def productpage(id):
-    cursor = None
-    conn = None
-    try:
-        # Since `id` is already an argument, you don't need to fetch it from request.args
-        productId = int(id)
-        customerId = session.get("user")
-        quant = 1
-        if customerId is None:
-            raise ValueError("Customer ID is not set in the session.")
+    if session.get("user"):
+        cursor = None
+        conn = None
+        try:
+            # Since `id` is already an argument, you don't need to fetch it from request.args
+            productId = int(id)
+            customerId = session.get("user")
+            quant = 1
+            if customerId is None:
+                raise ValueError("Customer ID is not set in the session.")
 
-        else:
-            conn = connect_to_database()
-            cursor = conn.cursor()
-            max_id = get_max_id()
-            query = "INSERT INTO warenkorb (warenkorbid, productid, customerid, quant) VALUES (%s, %s, %s, %s)"
-            cursor.execute(query, (max_id, productId, customerId, quant))
-            conn.commit()
-    except Exception as e:
-        print(f"An error occurred: {e}")
-        # Provide more informative error handling here if necessary
-        return "Error processing your request", 500
-    finally:
-        if cursor:
-            cursor.close()
-        if conn:
-            conn.close()
-    return redirect(url_for("shop"))
+            else:
+                conn = connect_to_database()
+                cursor = conn.cursor()
+                max_id = get_max_id()
+                query = "INSERT INTO warenkorb (warenkorbid, productid, customerid, quant) VALUES (%s, %s, %s, %s)"
+                cursor.execute(query, (max_id, productId, customerId, quant))
+                conn.commit()
+        except Exception as e:
+            print(f"An error occurred: {e}")
+            # Provide more informative error handling here if necessary
+            return "Error processing your request", 500
+        finally:
+            if cursor:
+                cursor.close()
+            if conn:
+                conn.close()
+        return redirect(url_for("shop"))
+    else:
+        try:
+            productId = int(id)
+            quant = 1  # Assuming you always add one quantity for simplicity
 
+            # Initialize 'warenkorb' in session if it doesn't exist
+            if 'warenkorb' not in session:
+                session['warenkorb'] = []
+
+            # Create a new product item
+            new_product = {'productid': productId, 'quant': quant}
+
+            # Retrieve the current 'warenkorb', add the new item, then reassign it back to the session
+            current_warenkorb = session.get('warenkorb')
+            current_warenkorb.append(new_product)
+            session['warenkorb'] = current_warenkorb  # Reassign to ensure Flask detects the change
+
+            # Mark the session as modified (should be redundant but can help in certain Flask versions or setups)
+            session.modified = True
+
+        except Exception as e:
+            print(f"An error occurred: {e}")
+            return "Error processing your request", 500
+
+        return redirect(url_for("shop"))
 
 def get_max_id():
     conn = connect_to_database()
@@ -270,7 +294,6 @@ def get_max_id():
     max_id = max_id[0]
     max_id = max_id[0]
     max_id += 1
-    print(max_id)
     conn.close()
     cursor.close()
     return max_id
@@ -302,6 +325,7 @@ def login_do():
         conn.close()
         return "wrong"
 
+
 def render_warenkorb():
     if session.get("user"):
         connection = connect_to_database()
@@ -328,7 +352,6 @@ def render_warenkorb():
         connection.close()
 
         if all_products:
-            print(all_products)
             return all_products
         else:
             return None
@@ -336,7 +359,7 @@ def render_warenkorb():
         warenkorb = session.get("warenkorb")
         # Assume warenkorb is a list of dictionaries with key 'productid'
         product_ids = [item['productid'] for item in warenkorb]  # Corrected line
-
+        print(product_ids)
         # Define a list to store the dictionaries
         all_products = []
 
@@ -349,7 +372,6 @@ def render_warenkorb():
             return all_products
         else:
             return None
-
 
 
 def get_product_info_warenkorb(productid):
@@ -373,11 +395,13 @@ def get_product_info_warenkorb(productid):
     else:
         return None
 
+
 @app.route("/logout")
 def logout():
     if session.get("user"):
         session.pop("user")
     return redirect("/")
+
 
 '''
 # Route to handle form submission
@@ -414,5 +438,3 @@ def hello_world() -> str:
 
 if __name__ == '__main__':
     app.run()
-
-# test
