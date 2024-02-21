@@ -158,8 +158,21 @@ section {
 }
 
 .header .cart-items-container.active {
-    right: 0;
+    right: 20px;
     position: absolute;
+    scroll-behavior: auto;
+    scroll-behavior: smooth;
+}
+.scroll-container {
+    display: block;
+    margin: 0 auto;
+    text-align: center;
+}
+.scroll-container {
+  width: 350px;
+  height: 200px;
+  overflow-y: scroll;
+  scroll-behavior: smooth;
 }
 
 .header .cart-items-container .cart-item {
@@ -178,19 +191,22 @@ section {
     cursor: pointer;
     color: var(--black);
 }
-.quant-input{
+
+.quant-input {
     border: solid 1px black;
     top: 5rem;
     height: 2.5rem;
 }
-.submitButton{
+
+.submitButton {
     top: 9rem;
     height: 2rem;
     position: absolute;
     right: 15px;
     font-size: 150%;
 }
-.submitButton:hover{
+
+.submitButton:hover {
     background-color: grey;
 }
 
