@@ -54,9 +54,9 @@
         {% if session.get("warenkorb") %}
         {% for warenkorbitem in warenkorb %}
         <div class="cart-item">
-            <span class="fas fa-trash-can"></span>
+            <a href="/warenkorb/del/{{ warenkorbitem.productid }}"><span class="fas fa-trash-can"></span></a>
             <input type="number" id="quantity" name="quantity" min="1" max="99" class="quant-input">
-            <img src="/assets/products/1.png" alt=""> <!-- Fixed typo in path -->
+            <img src="/asssets/products/1.png" alt=""> <!-- Fixed typo in path -->
             <div class="content">
                 <h3>{{ warenkorbitem.name_product }}</h3>
                 {% if warenkorbitem.is_sale %}
