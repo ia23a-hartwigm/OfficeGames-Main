@@ -147,32 +147,36 @@ section {
     color: var(--main-color);
 }
 
+
 .header .cart-items-container {
-    position: absolute;
-    top: 100%;
-    right: -100%;
+    position: fixed;
+    right: 0px;
+    top: 105px;
     height: calc(100vh - 9.5rem);
     width: 35rem;
     background: #fff;
     padding: 0 1.5rem;
+    overflow-y: auto;
 }
 
+
 .header .cart-items-container.active {
-    right: 20px;
+    right: 0px;
     position: absolute;
     scroll-behavior: auto;
-    scroll-behavior: smooth;
 }
+
 .scroll-container {
     display: block;
     margin: 0 auto;
     text-align: center;
 }
+
 .scroll-container {
-  width: 350px;
-  height: 200px;
-  overflow-y: scroll;
-  scroll-behavior: smooth;
+    width: 350px;
+    height: 200px;
+    overflow-y: scroll;
+    scroll-behavior: smooth;
 }
 
 .header .cart-items-container .cart-item {
@@ -293,4 +297,20 @@ section {
     }
 
 
+}
+
+@keyframes swipeInRight {
+    from {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+.cart-items-container {
+    display: none; /* Start hidden, will be toggled by JavaScript */
+    animation: swipeInRight 0.5s forwards; /* Animation name, duration, fill-mode */
 }
