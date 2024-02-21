@@ -197,6 +197,8 @@ section {
 }
 
 .quant-input {
+    user-input: int;
+    width: 50px;
     border: solid 1px black;
     top: 5rem;
     height: 2.5rem;
