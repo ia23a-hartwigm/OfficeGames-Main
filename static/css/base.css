@@ -147,32 +147,36 @@ section {
     color: var(--main-color);
 }
 
+
 .header .cart-items-container {
-    position: absolute;
-    top: 100%;
-    right: -100%;
+    position: fixed;
+    right: 20px;
+    top: 100px;
     height: calc(100vh - 9.5rem);
     width: 35rem;
     background: #fff;
     padding: 0 1.5rem;
+    overflow-y: auto;
 }
+
 
 .header .cart-items-container.active {
     right: 20px;
     position: absolute;
     scroll-behavior: auto;
-    scroll-behavior: smooth;
 }
+
 .scroll-container {
     display: block;
     margin: 0 auto;
     text-align: center;
 }
+
 .scroll-container {
-  width: 350px;
-  height: 200px;
-  overflow-y: scroll;
-  scroll-behavior: smooth;
+    width: 350px;
+    height: 200px;
+    overflow-y: scroll;
+    scroll-behavior: smooth;
 }
 
 .header .cart-items-container .cart-item {
