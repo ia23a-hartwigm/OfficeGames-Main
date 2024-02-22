@@ -53,25 +53,38 @@
 
     <div class="cart-items-container" id="cart-items-container" style="display: none;">
         {% if session.get("warenkorb") %}
-        {% for warenkorbitem in warenkorb %}
-        <div class="cart-item">
-            <a href="/warenkorb/del/{{ warenkorbitem.productid }}"><span class="fas fa-trash-can"></span></a>
-            <input type="number" id="quantity" name="quantity" min="1" max="100" class="quant-input">
-            <img src="/asssets/products/1.png" alt=""> <!-- Fixed typo in path -->
-            <div class="content">
-                <h3>{{ warenkorbitem.name_product }}</h3>
-                {% if warenkorbitem.is_sale %}
-                <div class="price">{{ warenkorbitem.sale }}</div>
-                {% else %}
-                <div class="price">{{ warenkorbitem.price }}</div>
-                {% endif %}
-            </div>
-        </div>
-        {% endfor %}
+            {% for warenkorbitem in warenkorb %}
+                <div class="cart-item">
+                    <a href="/warenkorb/del/{{ warenkorbitem.productid }}"><span class="fas fa-trash-can"></span></a>
+                    <input type="number" id="quantity{{ warenkorbitem.productid }}" name="quantity" min="1" max="100" class="quant-input">
+                    <script>
+                        var element = document.getElementById('quantity{{ warenkorbitem.productid }}');
+
+                        element.addEventListener('blur', function () {
+                            if (this.value < this.getAttribute('min')) {
+                                this.value = this.getAttribute('min');
+                            }
+                            if (this.value > this.getAttribute('max')) {
+                                this.value = this.getAttribute('max');
+                            }
+
+                        });
+                    </script>
+                    <img src="/asssets/products/1.png" alt=""> <!-- Fixed typo in path -->
+                    <div class="content">
+                        <h3>{{ warenkorbitem.name_product }}</h3>
+                        {% if warenkorbitem.is_sale %}
+                            <div class="price">{{ warenkorbitem.sale }}</div>
+                        {% else %}
+                            <div class="price">{{ warenkorbitem.price }}</div>
+                        {% endif %}
+                    </div>
+                </div>
+            {% endfor %}
         {% else %}
-        <div class="content">
-            <h3 style="color: #c8b6ff">Dein Warenkorb ist leider noch leer.</h3>
-        </div>
+            <div class="content">
+                <h3 style="color: #c8b6ff">Dein Warenkorb ist leider noch leer.</h3>
+            </div>
         {% endif %}
         <a href="" class="btn">Checkout</a>
     </div>
@@ -109,17 +122,6 @@
                 cartItemsContainer.style.display = 'block'; // Animation triggers when this changes from 'none'
             }
         });
-    });
-    var element = document.getElementById('quantity');
-
-    element.addEventListener('blur', function () {
-        if (this.value < this.getAttribute('min')) {
-            this.value = this.getAttribute('min');
-        }
-        if (this.value > this.getAttribute('max')) {
-            this.value = this.getAttribute('max');
-        }
-
     });
 </script>
 
