@@ -3,56 +3,59 @@
 {% block title %}Infos{% endblock %}
 
 {% block content %}
-
-    <section class="matthias-section">
-        <div class="container-flex">
-            <div class="left">
-                <div class="main_image">
-                    <img src="/static/asssets/products/1.png" alt="" class="slide">
-                </div>
-                <div class="option flex">
-                    <img src="/static/asssets/products/1.png" onclick="img('/static/asssets/products/1.png')">
-                    <img src="/static/asssets/products/2.png" onclick="img('/static/asssets/products/2.png')">
-                    <img src="/static/asssets/products/3.png" onclick="img('/static/asssets/products/3.png')">
-                    <img src="/static/asssets/products/4.png" onclick="img('/static/asssets/products/4.png')">
-                    <img src="/static/asssets/products/5.png" onclick="img('/static/asssets/products/5.png')">
-                    <img src="/static/asssets/products/6.png" onclick="img('/static/asssets/products/6.png')">
-                </div>
-            </div>
-            <div class="right">
-                <h3>Produkt 1</h3>
-                <h4><small>CHF</small>999.99</h4>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium atque cum deserunt eius eos
-                    esse, est, iure neque non nulla officiis, praesentium quam ullam? Architecto eligendi maiores
-                    mollitia perferendis voluptas.</p>
-                <div class="quantity-controls">
-                    <button onclick="changeQuantity(-1)">-</button>
-                    <input type="text" id="quantity" value="" readonly>
-                    <button onclick="changeQuantity(+1)">+</button>
-                </div>
-                <button>Add To Bag</button>
+{% for info in infos %}
+<section class="matthias-section">
+    <div class="container-flex">
+        <div class="left">
+            <div class="main_image">
+                <img src="{{ url_for('static', filename='asssets/products/' ~ info.productid ~ '.png') }}"
+                     alt="{{ info.name_product }}">
             </div>
         </div>
-    </section>
+        <!--<div class="option flex">
+            <img src="/static/asssets/products/1.png" onclick="img('/static/asssets/products/1.png')">
+            <img src="/static/asssets/products/2.png" onclick="img('/static/asssets/products/2.png')">
+            <img src="/static/asssets/products/3.png" onclick="img('/static/asssets/products/3.png')">
+            <img src="/static/asssets/products/4.png" onclick="img('/static/asssets/products/4.png')">
+            <img src="/static/asssets/products/5.png" onclick="img('/static/asssets/products/5.png')">
+            <img src="/static/asssets/products/6.png" onclick="img('/static/asssets/products/6.png')">
+        </div>-->
+    </div>
+    <div class="right">
+        <h3>{{ info.name_product }}</h3>
+        <h4><small>CHF</small>{{ info.price }}</h4>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium atque cum deserunt eius eos
+            esse, est, iure neque non nulla officiis, praesentium quam ullam? Architecto eligendi maiores
+            mollitia perferendis voluptas.</p>
+        <div class="quantity-controls">
+            <button onclick="changeQuantity(-1)">-</button>
+            <input type="text" id="quantity" value="" readonly>
+            <button onclick="changeQuantity(+1)">+</button>
+        </div>
+        <button>Add To Bag</button>
+    </div>
+    </div>
+</section>
+{% endfor %}
 
-    <script type="text/javascript">
-        function img(src) {
-            document.querySelector('.main_image img').src = src;
-        }
 
-        function changeQuantity(change) {
-            var quantityInput = document.getElementById('quantity');
-            var currentQuantity = parseInt(quantityInput.value);
-            var newQuantity = currentQuantity + change;
-            if (newQuantity <= 0) {
-                document.getElementById('quantity').value = 0;
-            } else if (newQuantity >= 99) {
-                document.getElementById('quantity').value = 99;
-            }
-            else {
-                document.getElementById('quantity').value = newQuantity;
-            }
+<script type="text/javascript">
+    function img(src) {
+        document.querySelector('.main_image img').src = src;
+    }
+
+    function changeQuantity(change) {
+        var quantityInput = document.getElementById('quantity');
+        var currentQuantity = parseInt(quantityInput.value);
+        var newQuantity = currentQuantity + change;
+        if (newQuantity <= 0) {
+            document.getElementById('quantity').value = 0;
+        } else if (newQuantity >= 99) {
+            document.getElementById('quantity').value = 99;
+        } else {
+            document.getElementById('quantity').value = newQuantity;
         }
-    </script>
+    }
+</script>
 
 {% endblock %}

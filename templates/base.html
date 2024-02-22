@@ -53,23 +53,23 @@
 
     <div class="cart-items-container" id="cart-items-container" style="display: none;">
         {% if session.get("warenkorb") or session.get("user") %}
-        {% for warenkorbitem in warenkorb %}
-        <div class="cart-item">
-            <a href="/warenkorb/del/{{ warenkorbitem.productid }}"><span class="fas fa-trash-can"></span></a>
-            <input type="number" id="quantity{{ warenkorbitem.productid }}" name="quantity" min="1" max="100"
-                   class="quant-input" value="{{ warenkorbitem.quant}}">
-
-            <img src="/asssets/products/1.png" alt=""> <!-- Fixed typo in path -->
-            <div class="content">
-                <h3>{{ warenkorbitem.name_product }}</h3>
-                {% if warenkorbitem.is_sale %}
-                <div class="price">{{ warenkorbitem.sale }}</div>
-                {% else %}
-                <div class="price">{{ warenkorbitem.price }}</div>
-                {% endif %}
-            </div>
-        </div>
-        {% endfor %}
+            {% for warenkorbitem in warenkorb %}
+                <div class="cart-item">
+                    <a href="/warenkorb/del/{{ warenkorbitem.productid }}"><span class="fas fa-trash-can"></span></a>
+                    <input type="number" id="quantity{{ warenkorbitem.productid }}" name="quantity" min="1" max="100"
+                           class="quant-input" data-productid="{{ warenkorbitem.productid }}" value="{{ warenkorbitem.quant }}">
+                    <img src="/asssets/products/1.png" alt=""> <!-- Fixed typo in path -->
+                    <div class="content">
+                        <h3>{{ warenkorbitem.name_product }}</h3>
+                        {% if warenkorbitem.is_sale %}
+                            <div class="price" data-base-price="{{ warenkorbitem.sale }}">{{ warenkorbitem.sale }}</div>
+                        {% else %}
+                            <div class="price"
+                                 data-base-price="{{ warenkorbitem.price }}">{{ warenkorbitem.price }}</div>
+                        {% endif %}
+                    </div>
+                </div>
+            {% endfor %}
         {% else %}
         <div class="content">
             <h3 style="color: #c8b6ff">Dein Warenkorb ist leider noch leer.</h3>
@@ -132,14 +132,17 @@
                     // Optionally, reset to min or max if out of bounds or inform the user
                     if (value < min) {
                         this.value = min;
+                        alert('Quantity set to minimum allowed value.');
                     } else if (value > max) {
                         this.value = max;
+                        alert('Quantity set to maximum allowed value.');
                     }
                 }
             });
         });
     });
 </script>
+
 
 
 <script src="/static/js/script.js"></script>

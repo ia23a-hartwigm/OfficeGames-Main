@@ -43,6 +43,9 @@
     padding: 20px;
     min-width: 300px;
 }
+.right{
+    color: white;
+}
 
 .main_image img, .option img {
     max-width: 100%;

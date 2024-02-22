@@ -182,7 +182,7 @@ def infos(id):
     product_info = get_products_by_id(cursor, id)
     cursor.close()
     connection.close()
-    return render_template("infos.html", warenkorb=render_warenkorb(), info=product_info)
+    return render_template("infos.html", warenkorb=render_warenkorb(), infos=product_info)
 
 
 @app.route("/review")
