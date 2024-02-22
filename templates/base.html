@@ -107,11 +107,38 @@
             if (cartItemsContainer.style.display === 'block') {
                 cartItemsContainer.style.display = 'none';
             } else {
-                cartItemsContainer.style.display = 'block'; // Animation triggers when this changes from 'none'
+                cartItemsContainer.style.display = 'block';
             }
+        });
+
+        var quantityInputs = document.querySelectorAll('input[type="number"][name="quantity"]');
+
+        quantityInputs.forEach(function(input) {
+            input.addEventListener('change', function() {
+                // Ensure the value respects the min and max constraints
+                var min = parseInt(this.min, 10);
+                var max = parseInt(this.max, 10);
+                var value = parseInt(this.value, 10);
+
+                if (value >= min && value <= max) {
+                    // Extract productid from the input's id attribute, assuming the format is "quantity<productid>"
+                    var productId = this.id.replace('quantity', '');
+                    alert('Quantity for product ' + productId + ' changed to: ' + this.value);
+                } else {
+                    // Optionally, reset to min or max if out of bounds or inform the user
+                    if (value < min) {
+                        this.value = min;
+                        alert('Quantity set to minimum allowed value.');
+                    } else if (value > max) {
+                        this.value = max;
+                        alert('Quantity set to maximum allowed value.');
+                    }
+                }
+            });
         });
     });
 </script>
+
 
 
 <script src="/static/js/script.js"></script>
