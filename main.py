@@ -124,6 +124,7 @@ def shop():
     product_info = get_products(cursor)
     cursor.close()
     connection.close()
+    print(session.get("warenkorb"))
     return render_template("shop.html", product_info=product_info, warenkorb=render_warenkorb())
 
 
@@ -238,8 +239,16 @@ def productpage(id):
             productId = int(id)
             customerId = session.get("user")
             quant = 1
-            if customerId is None:
-                raise ValueError("Customer ID is not set in the session.")
+
+            conn = connect_to_database()
+            cursor = conn.cursor()
+            cursor.execute("SELECT warenkorbid FROM warenkorb WHERE productid = %s AND customerid = %s",
+                           (productId, customerId))
+            is_in_warenkorb = cursor.fetchone()
+
+            if is_in_warenkorb:
+                # add one to that id
+                return "add one quant to warenkorb for that id"
 
             else:
                 conn = connect_to_database()
@@ -262,28 +271,37 @@ def productpage(id):
         if 'warenkorb' not in session:
             session['warenkorb'] = []
 
-            try:
-                productId = int(id)
-                quant = 1  # Assuming you always add one quantity for simplicity
+        try:
+            productId = int(id)
+            quant = 1  # Assuming you always add one quantity for simplicity
 
-                # Initialize 'warenkorb' in session if it doesn't exist
+            # Initialize 'warenkorb' in session if it doesn't exist
+            warenkorb = session.get("warenkorb")
+            # Assume warenkorb is a list of dictionaries with key 'productid'
+            product_ids = [item['productid'] for item in warenkorb]  # Corrected line
+            for id in product_ids:
+                if id == productId:
+                    return "add one quant to warenkorb for that id"
+                else:
+                    break
+            # Create a new product item
+            new_product = {'productid': productId, 'quant': quant}
 
-                # Create a new product item
-                new_product = {'productid': productId, 'quant': quant}
+            # Retrieve the current 'warenkorb', add the new item, then reassign it back to the session
+            current_warenkorb = session.get('warenkorb')
+            current_warenkorb.append(new_product)
+            session['warenkorb'] = current_warenkorb  # Reassign to ensure Flask detects the change
 
-                # Retrieve the current 'warenkorb', add the new item, then reassign it back to the session
-                current_warenkorb = session.get('warenkorb')
-                current_warenkorb.append(new_product)
-                session['warenkorb'] = current_warenkorb  # Reassign to ensure Flask detects the change
+            # Mark the session as modified (should be redundant but can help in certain Flask versions or setups)
+            session.modified = True
 
-                # Mark the session as modified (should be redundant but can help in certain Flask versions or setups)
-                session.modified = True
+        except Exception as e:
+            print(f"An error occurred: {e}")
+            return "Error processing your request", 500
 
-            except Exception as e:
-                print(f"An error occurred: {e}")
-                return "Error processing your request", 500
+        return redirect(url_for("shop"))
+    return redirect(url_for("shop"))
 
-            return redirect(url_for("shop"))
 
 def get_max_id():
     conn = connect_to_database()
@@ -380,10 +398,10 @@ def get_product_info_warenkorb(productid):
     connection = connect_to_database()
     cursor = create_cursor(connection)
 
-    keys = ["name_product", "price", "is_sale", "sale"]
+    keys = ["productid", "name_product", "price", "is_sale", "sale"]
 
     # Query to fetch data from the coworker table
-    query = "SELECT  name_product, price, is_sale, sale FROM product WHERE productid = %s"
+    query = "SELECT  productid, name_product, price, is_sale, sale FROM product WHERE productid = %s"
     cursor.execute(query, (str(productid),))
 
     # Fetch all rows from the query result
@@ -396,6 +414,109 @@ def get_product_info_warenkorb(productid):
         return list_of_dicts
     else:
         return None
+
+
+@app.route("/warenkorb/del/<id>", methods=['GET'])
+def warenkorb_del(id):
+    productId = int(id)
+    if session.get("user"):
+        connection = connect_to_database()
+        cursor = create_cursor(connection)
+
+        # Query to fetch data from the warenkorb table
+        query = "DELETE FROM warenkorb WHERE customerid = %s AND productid = %s"
+        cursor.execute(query, (session.get("user"), productId))
+
+        cursor.close()
+        connection.close()
+        return "deleted"
+    else:
+        warenkorb = session.get("warenkorb")
+        for i in range(len(warenkorb) - 1, -1, -1):  # Iterate in reverse to safely remove items
+            if warenkorb[i]['productid'] == productId:
+                warenkorb.pop(i)
+        session.pop("warenkorb")
+        session["warenkorb"] = warenkorb
+        return "deleted"
+
+
+@app.route("/warenkorb/edit/quant/plus1/<id>", methods=['GET'])
+def warenkorb_quant_plus_one(id):
+    productId = int(id)
+    if session.get("user"):
+        connection = connect_to_database()
+        cursor = create_cursor(connection)
+
+        # Query to fetch data from the warenkorb table
+        query = "UPDATE warenkorb SET quant = quant + 1 WHERE customerid = %s AND productid = %s"
+        cursor.execute(query, (session.get("user"), productId))
+
+        cursor.close()
+        connection.close()
+        return "quant plus 1"
+    else:
+        increment_product_quantity_in_session(id)
+        return "quant plus 1"
+
+
+def increment_product_quantity_in_session(productId):
+    # Ensure 'warenkorb' exists in session
+    if 'warenkorb' not in session:
+        session['warenkorb'] = []
+
+    warenkorb = session['warenkorb']
+    product_found = False
+
+    # Increment quantity if product exists
+    for item in warenkorb:
+        if item['productid'] == productId:
+            item['quant'] += 1
+            product_found = True
+            break
+
+    # Optionally, add the product with quant=1 if not found
+    if not product_found:
+        warenkorb.append({'productid': productId, 'quant': 1})
+
+    session['warenkorb'] = warenkorb
+    session.modified = True
+
+
+@app.route("/warenkorb/edit/quant/<id>/<value>", methods=['GET'])
+def warenkorb_quant_edit(id, value):
+    productId = int(id)
+    value = int(value)
+    if session.get("user"):
+        connection = connect_to_database()
+        cursor = create_cursor(connection)
+
+        # Query to fetch data from the warenkorb table
+        query = "UPDATE warenkorb SET quant = %s WHERE customerid = %s AND productid = %s"
+        cursor.execute(query, (value, session.get("user"), productId))
+
+        cursor.close()
+        connection.close()
+        return "quant set new"
+    else:
+        set_product_quantity_in_session(id, value)
+        print(session.get("warenkorb"))
+        return "quant set new"
+
+
+def set_product_quantity_in_session(productId, value):
+    # Ensure 'warenkorb' exists in session
+    if 'warenkorb' not in session:
+        session['warenkorb'] = []
+
+    warenkorb = session['warenkorb']
+    product_found = False
+
+    # Increment quantity if product exists
+    for item in warenkorb:
+        if item['productid'] == productId:
+            item['quant'] = value
+            product_found = True
+            break
 
 
 @app.route("/logout")
