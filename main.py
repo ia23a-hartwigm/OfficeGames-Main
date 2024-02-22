@@ -444,7 +444,7 @@ def warenkorb_del(id):
 
         cursor.close()
         connection.close()
-        return "deleted"
+        return redirect("/shop")
     else:
         warenkorb = session.get("warenkorb")
         for i in range(len(warenkorb) - 1, -1, -1):  # Iterate in reverse to safely remove items
@@ -452,7 +452,7 @@ def warenkorb_del(id):
                 warenkorb.pop(i)
         session.pop("warenkorb")
         session["warenkorb"] = warenkorb
-        return "deleted"
+        return redirect("/shop")
 
 
 @app.route("/warenkorb/edit/quant/plus1/<id>", methods=['GET'])
@@ -511,44 +511,37 @@ def warenkorb_quant_edit(id, value):
 
         cursor.close()
         connection.close()
-        return "quant set new"
+        return redirect("/shop")
     else:
-        set_product_quantity_in_session(id, value)
+        print("----------------------------------")
         print(session.get("warenkorb"))
-        return "quant set new"
+        print("----------------------------------")
+        set_product_quantity_in_session(id, value)
+        print("..................................")
+        print(session.get("warenkorb"))
+        print("..................................")
+        return redirect("/shop")
 
 
 def set_product_quantity_in_session(productId, new_quantity):
-    """
-    Update the quantity of a product in the session's warenkorb.
-
-    :param productId: The ID of the product to update.
-    :param new_quantity: The new quantity to set for the product.
-    """
-    # Check if 'warenkorb' exists in the session and ensure it is initialized if not
+    # Ensure 'warenkorb' exists in session
     if 'warenkorb' not in session:
-        return redirect("/shop")
+        session['warenkorb'] = []
 
-    # Flag to check if product is found in the warenkorb
+    warenkorb = session['warenkorb']
     product_found = False
-    warenkorb = session.get("warenkorb")
+
+    # Increment quantity if product exists
     for item in warenkorb:
         if item['productid'] == productId:
-            # Update quantity if product is found
             item['quant'] = new_quantity
             product_found = True
-            break  # Exit the loop once the product is found and updated
+            break
 
-    session.pop("warenkorb")
-    session["warenkorb"] = warenkorb
-    # If the product is not found, you can choose to handle this case as needed
-    # For example, you could add the product with the new quantity, log a message, etc.
 
-    # Mark the session as modified to ensure changes are saved
+
+    session['warenkorb'] = warenkorb
     session.modified = True
-
-    # Optional: Return a message or boolean indicating success/failure
-    return 'Product quantity updated' if product_found else 'Product not found in warenkorb'
 
 
 @app.route("/logout")
