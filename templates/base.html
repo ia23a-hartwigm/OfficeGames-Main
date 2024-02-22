@@ -125,15 +125,8 @@
                     // Extract productid from the input's id attribute, assuming the format is "quantity<productid>"
                     var productId = this.id.replace('quantity', '');
                     alert('Quantity for product ' + productId + ' changed to: ' + this.value);
-                    var xhr = new XMLHttpRequest();
-                    xhr.open("GET", "/warenkorb/edit/quant/" + productId + "/" + this.value, true);
-                    xhr.onreadystatechange = function () {
-                        if (xhr.readyState == 4 && xhr.status == 200) {
-                            var response = JSON.parse(xhr.responseText);
-                            console.log(response);
-                        }
-                    };
-                    xhr.send();
+                    window.location.href = "/warenkorb/edit/quant/" + productId + "/" + this.value;
+
 
                 } else {
                     // Optionally, reset to min or max if out of bounds or inform the user
