@@ -27,7 +27,7 @@
 <body>
 <header class="header">
     <a href="" class="logo">
-        <img src="/static/asssets/logoTransparent.png" alt=""> <!-- Fixed typo in path -->
+        <img src="/static/asssets/logoTransparent.png" alt="">
     </a>
 
     <nav class="navbar">
@@ -56,16 +56,9 @@
             {% for warenkorbitem in warenkorb %}
                 <div class="cart-item">
                     <a href="/warenkorb/del/{{ warenkorbitem.productid }}"><span class="fas fa-trash-can"></span></a>
-                    <input type="number" id="quantity{{ warenkorbitem.productid }}" name="quantity" min="1" max="100" class="quant-input" value="{{ warenkorbitem.quant }}">
-                    <script>
-                        var element = document.getElementById('quantity{{ warenkorbitem.productid }}');
+                    <input type="number" id="quantity{{ warenkorbitem.productid }}" name="quantity" min="1" max="100" class="quant-input">
 
-                        element.addEventListener('blur', function () {
-                            if (this.value < this.getAttribute('min')) {
-                                this.value = this.getAttribute('min');
-                            }
-                        });
-                    </script>
+                    <img src="/asssets/products/1.png" alt=""> <!-- Fixed typo in path -->
                     <div class="content">
                         <h3>{{ warenkorbitem.name_product }}</h3>
                         {% if warenkorbitem.is_sale %}
