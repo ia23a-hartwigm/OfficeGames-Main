@@ -86,6 +86,7 @@ def get_products_by_id(cursor, id):
     else:
         return None
 
+
 def get_products(cursor):
     # Define the keys that will be used to create the dictionaries
     keys = ["productid", "name_product", "rating", "price", "is_sale", "sale", "description"]
@@ -104,9 +105,6 @@ def get_products(cursor):
         return list_of_products
     else:
         return None
-
-
-
 
 
 @app.route("/")
@@ -237,18 +235,32 @@ def kasse():
 @app.route("/new_user", methods=["POST"])
 def new_user():
     if request.method == "POST":
-        username = request.form["name"]
-        password = request.form["password"]
+        first_name = request.form["first_name"]
+        last_name = request.form["last_name"]
+        company = request.form["company"]
+        street = request.form["street"]
+        plz = request.form["plz"]
+        city = request.form["city"]
+        country = request.form["country"]
+        email = request.form["email"]
+        tel = request.form["tel"]
+        pw = request.form["password"]
+        pw2 = request.form["password2"]
+        agree = request.form["tos"]
 
-        # Connect to your PostgreSQL database
-        conn = psycopg2.connect(db_config)
-        cur = conn.cursor()
+        if agree == True:
+            if pw == pw2:
+                conn = connect_to_database()
+                cursor = conn.cursor()
+                max_id = get_max_id_customer()
+                query = "INSERT INTO customers (customersid, first_name, last_name, company_name, country, street, plz, city, tel, email, password) VALUES %s, %s, %s, %s, %s, %s, %s, %s, %s, %s"
+                cursor.execute(query, (max_id, first_name, last_name, company, country, street, plz, city, tel, email, pw))
+                conn.commit()
+            else:
+                return "pw nicht übeinstimmend"
 
-    # Query to check if the user exists with the provided username and password
-    cur.execute("SELECT customersid FROM customers WHERE email = %s AND password = %s", (username, password))
-    user = cur.fetchone()
-    print(user)
-
+        else:
+            return "need to accept the agreement"   
 
 @app.route('/warenkorb/add/<id>', methods=['GET'])
 def productpage(id):
@@ -263,9 +275,10 @@ def productpage(id):
 
             conn = connect_to_database()
             cursor = conn.cursor()
-            cursor.execute("SELECT warenkorbid FROM warenkorb WHERE productid = %s AND customerid = %s",
-                           (productId, customerId))
-            is_in_warenkorb = cursor.fetchone()
+            max_id = get_max_id_warenkorb()
+            query = "INSERT INTO warenkorb (warenkorbid, productid, customerid, quant) VALUES (%s, %s, %s, %s)"
+            cursor.execute(query, (max_id, productId, customerId, quant))
+            conn.commit()
 
             if is_in_warenkorb:
                 # add one to that id
@@ -275,7 +288,7 @@ def productpage(id):
             else:
                 conn = connect_to_database()
                 cursor = conn.cursor()
-                max_id = get_max_id()
+                max_id = get_max_id_warenkorb()
                 query = "INSERT INTO warenkorb (warenkorbid, productid, customerid, quant) VALUES (%s, %s, %s, %s)"
                 cursor.execute(query, (max_id, productId, customerId, quant))
                 conn.commit()
@@ -325,11 +338,26 @@ def productpage(id):
     return redirect(url_for("shop"))
 
 
-def get_max_id():
+def get_max_id_warenkorb():
     conn = connect_to_database()
     cursor = conn.cursor()
 
     query = ("SELECT warenkorbid FROM warenkorb WHERE warenkorbid = (SELECT MAX(warenkorbid) FROM warenkorb)")
+    cursor.execute(query)
+    max_id = cursor.fetchall()
+    max_id = max_id[0]
+    max_id = max_id[0]
+    max_id += 1
+    conn.close()
+    cursor.close()
+    return max_id
+
+
+def get_max_id_customer():
+    conn = connect_to_database()
+    cursor = conn.cursor()
+
+    query = ("SELECT customerid FROM customers WHERE customerid = (SELECT MAX(customerid) FROM customers)")
     cursor.execute(query)
     max_id = cursor.fetchall()
     max_id = max_id[0]
@@ -365,6 +393,7 @@ def login_do():
         cur.close()
         conn.close()
         return "wrong"
+
 
 def render_warenkorb():
     if 'warenkorb' in session:
@@ -537,8 +566,6 @@ def set_product_quantity_in_session(productId, new_quantity):
             item['quant'] = new_quantity
             product_found = True
             break
-
-
 
     session['warenkorb'] = warenkorb
     session.modified = True
