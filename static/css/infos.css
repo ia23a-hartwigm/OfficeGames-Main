@@ -1,63 +1,55 @@
-:root {
-    --main-color: #c8b6ff;
-    --second-color: #5638C0FF;
-    --third-color: #381c72;
-    --black: #13131a;
-    --bg: #010103;
-    --border: .1rem solid rgba(255, 255, 255, .3);
-}
-
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    outline: none;
-    border: none;
-    text-decoration: none;
-    text-transform: capitalize;
-    transition: .2s linear;
-}
-
 .container-flex {
     max-width: 90%;
-    margin: 20px auto;
+    margin: 75px auto;
     display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
+    justify-content: space-between;
     background: var(--bg);
     color: white;
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-}
-.matthias-section{
-    margin-top: 10rem;
-}
-.option img{
-    border: 1px solid;
-    border-color: white;
-    border-radius: 5px;
+    position: relative;
 }
 
 .left, .right {
-    flex: 1;
     padding: 20px;
     min-width: 300px;
 }
-.right{
-    color: white;
+
+.right {
+    flex: 1;
 }
 
-.main_image img, .option img {
+.productname {
+    font-size: 50px;
+}
+
+.productprice {
+    font-size: 25px;
+}
+
+.productpicture {
+    border: white 3px solid;
+    border-radius: 50px;
+    padding: 10px;
+}
+
+.productInfo {
+    color: white;
+    font-size: 1.5rem;
+    margin-top: 30px;
+}
+
+.main_image img {
     max-width: 100%;
     height: auto;
     cursor: pointer;
     margin-bottom: 10px;
 }
 
-.option img {
-    width: 60px;
-    height: 60px;
-    object-fit: cover;
+.quantity-controls {
+    display: flex;
+    align-items: center;
+    font-size: 2rem;
 }
 
 .quantity-controls button {
@@ -65,12 +57,19 @@
     color: var(--main-color);
     padding: 5px 10px;
     cursor: pointer;
+    font-size: 2rem;
+    margin-top: 15px;
 }
 
 .quantity-controls input {
     width: 50px;
     text-align: center;
     border-radius: 5px;
+    font-size: 2rem;
+    margin-top: 15px;
+}
+.addToBagButton{
+    margin-right: 150px;
 }
 
 @media (max-width: 768px) {
